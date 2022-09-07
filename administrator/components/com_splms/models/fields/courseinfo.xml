@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+  <field name="info_text"
+   type="inputbox"
+   label="COM_SPLMS_TITLE_COURSE_INFO_LABEL"
+   
+  />
+  <field name="info_number"
+   type="text"
+   label="COM_SPLMS_TITLE_COURSE_INFO_VALUE"
+   
+  />
+</form>

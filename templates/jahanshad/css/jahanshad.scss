@@ -1,0 +1,627 @@
+@import "colors";
+@import "mixins";
+
+@font-face {
+  font-family: 'iransansxv';
+  src: url('../font/IRANSansXV.woff') format('woff-variations'),
+  url('../font/IRANSansXV.woff') format('woff');
+  font-weight: 100 900;
+  font-display: fallback;
+}
+@font-face {
+  font-family: iransansx;
+  src: url('../font/IRANSansX-regular.woff') format('woff');
+}
+@font-face {
+  font-family: iransansx;
+  src: url('../font/IRANSansX-bold.woff') format('woff');
+  font-weight: 700;
+}
+body,
+.font{
+  font-family: 'iransansx', Tahoma, sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  body,
+  .font{
+    font-family: 'iransansxv', Tahoma, sans-serif;
+  }
+}
+%font{font-family: 'iransansxv', sans-serif}
+.font{@extend %font;}
+
+html{
+  &.uk-offcanvas-page{
+    body{
+      direction: ltr;
+      overflow: auto;
+      > *{
+        direction: rtl;
+      }
+    }
+  }
+}
+
+h1,h2,h3{
+  font-variation-settings: 'wght' 700;
+}
+.ltr{direction: ltr;}
+.cursorPointer{cursor: pointer;}
+.hoverLink{
+  &:hover{color: $gray900;}
+}
+.f500{font-variation-settings: 'wght' 500;}
+.f700{font-variation-settings: 'wght' 700;}
+.f900{font-variation-settings: 'wght' 900;}
+.ss02 {
+  -moz-font-feature-settings: "ss02";
+  -webkit-font-feature-settings: "ss02";
+  font-feature-settings: "ss02";
+}
+a{
+  &.logo{
+    text-decoration: none;
+  }
+}
+nav{
+  background-color: $gray100;
+  .mainMenu{
+    list-style: none;
+    > li{
+      margin-right: 20px;
+      > a{
+        font-variation-settings: 'wght' 600;
+        font-size: 14px;
+        color: $gray700;
+        text-decoration: none;
+        @extend %font;
+        &:hover{
+          color: $primary;
+        }
+      }
+      &.active{
+        > a{
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+ul{
+  &.contact{
+    li{
+      padding: 5px 0;
+      i{
+        font-size: 16px;
+        margin-left: 10px;
+      }
+      a{
+        font-size: 14px;
+        color: $gray300;
+        font-variation-settings: 'wght' 500;
+        @extend %font;
+        @include transition();
+        &:hover{
+          color: #fff;
+        }
+      }
+      span{
+        font-size: 14px;
+        color: $gray400;
+        @extend %font;
+        @include transition();
+      }
+      .uk-margin-tiny-bottom{
+        margin-bottom: 5px;
+        svg{
+          @include transform(translateY(2px));
+        }
+      }
+    }
+    &.dark{
+      span{
+        color: $gray500;
+      }
+      a{
+        color: $gray700;
+        &:hover{
+          color: $gray900;
+        }
+      }
+    }
+  }
+}
+section{
+  &.pageHeader{
+    background-color: #1a1f27;
+    h1,h2,h3{
+      color: #fff;
+      font-variation-settings: 'wght' 900;
+    }
+  }
+}
+.topDrop{
+  .topDropWrapper{
+    background-color: #fff;
+    border-top: 3px solid $accent;
+    @include border-radius(0 0 5px 5px);
+    @include box-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
+  }
+}
+.listContainer{
+  list-style: none;
+  li{
+    a{
+      display: block;
+      padding: 13px 20px;
+      font-variation-settings: 'wght' 600;
+      cursor: pointer;
+      color: $gray900;
+      @extend %font;
+      @include transition();
+      @include border-radius();
+      i{
+        margin-left: 10px;
+        font-size: 16px;
+        color: $gray700;
+        @include transform(translateY(2px));
+        @include transition();
+      }
+      &:hover{
+        background-color: $gray100;
+        text-decoration: none;
+        i{
+          color: $primary;
+        }
+      }
+    }
+    &.active{
+      a{
+        background-color: $gray100;
+        text-decoration: none;
+        i{
+          color: $primary;
+        }
+      }
+    }
+    &:not(:first-child){
+      margin-top: 1px;
+    }
+    &:last-child{
+      a{
+        &:hover{
+          color: $danger600;
+          background-color: $danger50;
+          i{
+            color: $danger600;
+          }
+        }
+      }
+    }
+  }
+}
+.radioTabs{
+  input{
+    &:checked{
+      + label{
+        background-color: $accent;
+        color: #fff;
+        border-color: $accent;
+        &:hover{
+          border-color: darken($accent, 8%);
+        }
+      }
+    }
+  }
+}
+footer{
+  background-color: $secondary;
+  .supportIcon{
+    font-size: 36px;
+    @include  transform(translateY(1px));
+  }
+  p{
+    font-size: 14px;
+    color: $gray300;
+    @extend %font;
+  }
+  h6{
+    color: #fff;
+    font-size: 16px;
+    font-variation-settings: 'wght' 700;
+    font-weight: normal;
+    margin-bottom: 20px;
+    @extend %font;
+  }
+  ul{
+    &.socials{
+      li{
+        a{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+          width: 50px;
+          height: 50px;
+          background-color: #212730;
+          font-size: 20px;
+          text-decoration: none;
+          @include border-radius(100px);
+          @include transition();
+          &:hover{
+            background-color: $primary;
+          }
+        }
+      }
+    }
+    &.fNav{
+      li{
+        a{
+          display: block;
+          padding: 5px 0;
+          font-size: 14px;
+          color: $gray300;
+          @extend %font;
+          @include transition();
+          &:hover{
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  div{
+    &.copyright{
+      i{
+        margin-left: 10px;
+        @include transform(translateY(1px));
+      }
+    }
+    &.support{
+      svg{
+        font-size: 48px;
+      }
+    }
+    &.copyright,
+    &.support{
+      span{
+        font-size: 12px;
+        color: $gray500;
+        font-variation-settings: 'wght' 500;
+        margin: 4px 0;
+        @extend %font;
+      }
+      a{
+        font-size: 14px;
+        color: #fff;
+        font-variation-settings: 'wght' 500;
+        text-decoration: none;
+        @extend %font;
+      }
+    }
+    &.copyrightsWrapper{
+      background-color: #1a1f27;
+      font-size: 0;
+      @include border-radius(10px 10px 0 0);
+      form{
+        &.newsletterForm{
+          fieldset{
+            margin: 0;
+            border: none;
+            outline: none;
+            padding: 10px;
+            background-color: $secondary;
+            @include border-radius();
+            input{
+              background-color: transparent;
+              border: 0;
+              outline: 0;
+              color: #fff;
+              text-align: right;
+              direction: ltr;
+              padding: 10px 15px;
+              font-size: 14px;
+              border: none;
+              @include box-shadow(none);
+              @extend %font;
+            }
+          }
+        }
+      }
+      .uk-grid-divider>:not(.uk-first-column)::before{border-color: #373a3e;}
+    }
+  }
+}
+
+fieldset{
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+.uk-form-label{
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-variation-settings: 'wght' 700;
+}
+
+.uk-background-white{background-color: #fff;}
+.uk-text-white{color: #fff;}
+.uk-text-success{color: $success600 !important;}
+.uk-text-tiny{font-size: 12px;}
+.uk-text-zero{font-size: 0;}
+
+joomla-alert{
+  text-align: center;
+  border: none;
+  padding: 15px 0;
+  @include border-radius(0);
+  button,
+  .alert-heading{display: none}
+  &[type="danger"]{
+    background-color: $danger600;
+  }
+  &[type="success"]{
+    background-color: $success600;
+  }
+  .alert-message{
+    color: #fff;
+    font-size: 14px;
+    @extend .f700;
+  }
+}
+.uk-alert{
+  @extend .ss02;
+  &.uk-alert-primary{
+    background-color: $info100;
+    color: $info800;
+  }
+  &.uk-alert-danger{
+    background-color: $danger50;
+    color: $danger600;
+  }
+  &.uk-alert-warning{
+    background-color: $warning50;
+    color: $warning500;
+  }
+}
+
+#ticket-left-column .card-header h3{
+  font-variation-settings: 'wght' 900;
+  @extend .font;
+}
+
+/* UIKit Overrides */
+.uk-input,
+.uk-textarea,
+.uk-select{
+  font-size: 14px;
+  font-variation-settings: 'wght' 500;
+  color: #222;
+  width: 100%;
+  background-color: $gray100;
+  border-color: $gray100;
+  @extend %font;
+  @include border-radius(5px);
+  @include transition(all .3s ease-out);
+  &:focus{
+    color: #222;
+    border-color: $primary;
+    background-color: #fff;
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, .05), 0 0 0 1px $primary;
+  }
+  &.ant-input-status-success{
+    color: #222;
+    border-color: $success600;
+    background-color: #fff;
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, .05), 0 0 0 1px $success600;
+  }
+  &.uk-form-danger,
+  &.ant-input-status-error{
+    color: #222;
+    border-color: $danger600;
+    background-color: #fff;
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, .05), 0 0 0 1px $danger600;
+  }
+  &::placeholder{
+    color: $gray500;
+  }
+}
+.uk-textarea{
+  padding: 15px;
+}
+.uk-input,
+.uk-select{
+  &.uk-form-large{
+    height: 55px;
+  }
+}
+.uk-text-primary{color: $primary !important;}
+.uk-button{
+  font-size: 0;
+  font-variation-settings: 'wght' 500;
+  display: flex;
+  align-items: center;
+  border-color: transparent;
+  box-sizing: border-box;
+  @include border-radius(3px);
+  @extend %font;
+  span{
+    font-size: 14px;
+    @include transform(translateY(1px));
+  }
+  svg,i{
+    font-size: 16px;
+    + span{
+      margin-right: 10px;
+    }
+  }
+  span{
+    + svg,i{
+      margin-right: 10px;
+    }
+  }
+  &.uk-button-icon{
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  &.uk-button-large{
+    font-size: 16px;
+    font-variation-settings: 'wght' 700;
+    height: 55px;
+    &.uk-button-icon{
+      width: 55px;
+    }
+  }
+  &.uk-button-small{
+    span{
+      font-variation-settings: 'wght' 700;
+      font-size: 12px;
+    }
+  }
+  &.uk-button-default{
+    &:hover{
+      border-color: $gray200;
+    }
+  }
+  &.uk-button-primary{
+    background-color: $primary;
+    color: #fff;
+  }
+  &.uk-button-disabled{
+    color: $gray300;
+    cursor: auto;
+    &:hover{
+      border-color: transparent;
+    }
+  }
+  &.uk-button-danger{
+    background-color: $danger600;
+    color: #fff;
+    &:hover{
+      background-color: darken($danger600, 4%);;
+    }
+    &:active{
+      background-color: darken($danger600, 8%);
+      @include box-shadow(inset 0 4px 7px 0 rgba(0, 0, 0, .2));
+    }
+  }
+  &.uk-button-plain{
+    padding-left: 0;
+    padding-right: 0;
+    font-variation-settings: 'wght' 500;
+    font-size: 14px;
+    color: $gray500;
+    @include transition();
+    &:hover{
+      color: $gray900;
+    }
+  }
+  &.iconBalance{
+    svg,i{
+      top: 4px;
+      position: relative;
+    }
+  }
+}
+.uk-radio,
+.uk-checkbox{
+  margin-left: 5px;
+  @include transform(translateY(1px));
+  + span{
+    font-size: 12px;
+    color: $gray500;
+    @include transition(color .3s ease);
+    @extend .f700;
+  }
+  &:checked{
+    + span{
+      color: $gray900;
+    }
+  }
+}
+label{
+  &.cursorPointer{
+    &:hover{
+      span{
+        color: $gray900;
+      }
+    }
+  }
+}
+.uk-badge{
+  height: 24px;
+  padding: 0 10px;
+  @extend .f700;
+  &.uk-badge-default{
+    background-color: #fff;
+    color: $gray900 !important;
+  }
+  &.uk-badge-primary{
+    background-color: $primary;
+  }
+  &.uk-badge-success{
+    background-color: $success600;
+  }
+}
+.filtersCourseCount{
+  color: #fff;
+  background-color: $success600;
+  width: 20px;
+  height: 20px;
+}
+.uk-tooltip{
+  font-size: 12px;
+  font-variation-settings: 'wght' 400;
+  padding: 5px 10px;
+  @extend %font;
+}
+.uk-background-muted{
+  background-color: $gray50;
+}
+.uk-background-primary{
+  background-color: $primary;
+}
+
+.uk-label{
+  padding: 5px 13px 4px;
+  background-color: #fff;
+  text-decoration: none;
+  font-size: 11px;
+  @include transition(all .3s ease);
+  &:hover{
+    color: #fff;
+    text-decoration: none;
+  }
+  i{
+    margin-left: 8px;
+    @include transform(translateY(1px));
+  }
+  &.uk-label-default{
+    color: $gray700;
+    @include box-shadow(0 0 0 1px $gray700);
+    &:hover{
+      background-color: $gray700;
+      color: #fff;
+    }
+  }
+  &.uk-label-success{
+    color: $success600;
+    background-color: $success50;
+    @include box-shadow(0 0 0 1px $success600);
+    &:hover{
+      background-color: $success600;
+      color: #fff;
+    }
+  }
+  &.uk-label-danger{
+    color: $danger600;
+    @include box-shadow(0 0 0 1px $danger600);
+    &:hover{
+      background-color: $danger600;
+      color: #fff;
+    }
+  }
+}
