@@ -23,49 +23,42 @@ $can_rate = ($user->id) ? 'can-rate': '';
 <div id="reviewers-form-popup" style="display:none">
 	<a class="close-popup" href="#"><i class="fa fa-times"></i></a>
 	<?php } ?>
-	<div class="review-wrap reviewers-form">
-		<i class="fa fa-spinner fa-spin"></i>
-
-		<div class="profile-img">
-			<img src="<?php echo SplmsHelper::getAvatar($user->id); ?>" alt="<?php echo $user->name; ?>">
-		</div>
-		<div class="review-box clearfix">
-			<?php if($user->id) { ?>
-			<p class="reviewers-name">
-				<span><?php echo $user->name; ?></span>
-			</p>
-			<?php } ?>
-			
-			<?php
-			if($review) {
-				$rating = $review->rating;
-			} else {
-				$rating = 1;
-			}
-			echo LayoutHelper::render('review.ratings', array('rating'=>$rating, 'class'=>$can_rate));
-			?>
-			<div class="reviewers-review">
+	<div>
+		<div>
+			<div class="review-wrap reviewers-form">
 				<form id="form-item-review">
-					<div>
-						<?php if($review) { ?>
-						<textarea name="review" id="input-review" placeholder="Write Your Review" cols="30" rows="10"><?php echo $review->review; ?></textarea>
-						<input type="hidden" id="input-rating" name="rating" value="<?php echo $review->rating; ?>">
-						<input type="hidden" id="input-review-id" name="review_id" value="<?php echo $review->id; ?>">
-						<?php } else { ?>
-						<textarea name="review" id="input-review" placeholder="Write Your Review" cols="30" rows="10" <?php echo ($user->id) ? '': 'disabled="disabled"'; ?>></textarea>
-						<input type="hidden" id="input-rating" name="rating" value="1">
-						<input type="hidden" id="input-review-id" name="review_id" value="">
-						<?php } ?>
-	
-						<input type="hidden" name="item_id" value="<?php echo $displayData['item_id']; ?>">
-					</div>
-					<div class="button-wrapper">
-						<?php if($user->id) { ?>
-						<input type="submit" value="<?php echo Text::_('COM_SPLMS_SUBMIT_REVIEW'); ?>" id="submit-review" class="btn btn-success btn-lg pull-right">
-						<?php } else { ?>
-						<a href="<?php echo Route::_('index.php?option=com_users&view=login&return=' . base64_encode($displayData['url'])); ?>" class="btn btn-success btn-lg pull-right"><i class="fa fa-lock"></i> <?php echo Text::_('COM_SPLMS_LOGIN_TO_REVIEW'); ?></a>
-						<?php } ?>
-					</div>
+                    <div class="uk-child-width-1-1 uk-grid-small" data-uk-grid>
+                        <div class="uk-flex uk-flex-middle">
+                            <span class="uk-text-secondary uk-text-tiny font f700 uk-margin-left"><?php echo JText::_('YOUR_VOTE_TO_THIS').' :'; ?></span>
+	                        <?php
+	                        if($review) {
+		                        $rating = $review->rating;
+	                        } else {
+		                        $rating = 1;
+	                        }
+	                        echo LayoutHelper::render('review.ratings', array('rating'=>$rating, 'class'=>$can_rate));
+	                        ?>
+                        </div>
+	                    <?php if($review) { ?>
+                            <div>
+                                <textarea name="review" id="input-review" class="uk-textarea" placeholder="Write Your Review" cols="30" rows="10"><?php echo $review->review; ?></textarea>
+                                <input type="hidden" id="input-rating" name="rating" value="<?php echo $review->rating; ?>">
+                                <input type="hidden" id="input-review-id" name="review_id" value="<?php echo $review->id; ?>">
+                            </div>
+	                    <?php } else { ?>
+                            <div>
+                                <textarea name="review" id="input-review" class="uk-textarea" placeholder="Write Your Review" cols="30" rows="10" <?php echo ($user->id) ? '': 'disabled="disabled"'; ?>></textarea>
+                                <input type="hidden" id="input-rating" name="rating" value="1">
+                                <input type="hidden" id="input-review-id" name="review_id" value="">
+                            </div>
+	                    <?php } ?>
+                        <div>
+                            <input type="hidden" name="item_id" value="<?php echo $displayData['item_id']; ?>">
+		                    <?php if($user->id) { ?>
+                                <button type="submit" name="form[submit]" id="submit-review" class="uk-box-shadow-small uk-box-shadow-hover-medium uk-border-rounded uk-width-1-1 uk-button-large uk-flex-center rsform-submit-button  uk-button uk-button-primary"><i class="far fa-comment-alt"></i><span><?php echo JText::_('COM_SPLMS_SUBMIT_REVIEW'); ?></span></button>
+		                    <?php } ?>
+                        </div>
+                    </div>
 				</form>
 			</div>
 		</div>

@@ -44,7 +44,7 @@ $cart_url = Route::_('index.php?option=com_splms&view=cart'. splmshelper::getIte
 			                    <?php $cart_price = ($item->sale_price > 0) ? $item->sale_price : $item->price; ?>
                                 <div>
                                     <div class="uk-grid-small" data-uk-grid>
-                                        <div class="uk-width-auto">
+                                        <div class="uk-width-1-4">
                                             <a href="<?php echo $item->url; ?>" class="uk-display-inline-block uk-border-rounded uk-box-shadow-small uk-overflow-hidden">
                                                 <img src="<?php echo !empty($item->image) ? $item->thumbnail : 'images/placeholder-s.svg'; ?>" alt="<?php echo $item->title; ?>" data-uk-svg>
                                             </a>

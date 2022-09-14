@@ -64,7 +64,7 @@ a{
   }
 }
 nav{
-  background-color: $gray100;
+  //background-color: $gray100;
   .mainMenu{
     list-style: none;
     > li{
@@ -88,6 +88,41 @@ nav{
   }
 }
 ul{
+  &.pagination{
+    li{
+      >a,>span{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        text-decoration: none;
+        @extend .f900;
+        @include border-radius(100px);
+      }
+      >span{
+        background-color: $gray100;
+      }
+      >a{
+        background-color: $primary;
+        color: #fff;
+      }
+    }
+  }
+  &.socialShare{
+    font-size: 0;
+    a{
+      text-decoration: none;
+      color: $gray500;
+      @include transition(color .3s ease);
+      i{
+        font-size: 24px;
+      }
+      &:hover{
+        color: $primary;
+      }
+    }
+  }
   &.contact{
     li{
       padding: 5px 0;
@@ -130,6 +165,10 @@ ul{
       }
     }
   }
+}
+.coursePrice{
+  .uk-text-tiny{font-size: 16px;}
+  .uk-text-small{font-size: 24px;}
 }
 section{
   &.pageHeader{
@@ -175,6 +214,7 @@ section{
         }
       }
     }
+    &.uk-active,
     &.active{
       a{
         background-color: $gray100;
@@ -213,6 +253,24 @@ section{
       }
     }
   }
+}
+#re_send_btn{
+  a{
+    display: flex;
+    align-items: center;
+    + div{
+      display: none;
+    }
+    &[disabled]{
+      display: none;
+      + div{
+        display: block;
+      }
+    }
+  }
+}
+.authLoader{
+  background-color: rgba(255, 255, 255, .9);
 }
 footer{
   background-color: $secondary;
@@ -333,6 +391,33 @@ footer{
   }
 }
 
+.uk-accordion{
+  li{
+    overflow: hidden;
+    @include border-radius(5px);
+    @include transition(all .3s ease-out);
+    .uk-accordion-title{
+      position: relative;
+      padding: 15px;
+      background-color: $gray50;
+      margin: 0;
+      @include transition(all .3s ease-out);
+      &:before{
+        position: absolute;
+        left: 15px;
+      }
+    }
+    &:nth-child(n+2){margin-top: 15px !important;}
+    &.uk-open{
+      @include box-shadow(0 0 0 2px $accent);
+      .uk-accordion-title{
+        background-color: #fff;
+      }
+      .uk-accordion-content{}
+    }
+  }
+}
+
 fieldset{
   border: none;
   outline: none;
@@ -345,6 +430,9 @@ fieldset{
   font-size: 14px;
   font-variation-settings: 'wght' 700;
 }
+.icon16{font-size: 16px;}
+.icon24{font-size: 24px;}
+.icon48{font-size: 48px;}
 
 .uk-background-white{background-color: #fff;}
 .uk-text-white{color: #fff;}
@@ -359,6 +447,9 @@ joomla-alert{
   @include border-radius(0);
   button,
   .alert-heading{display: none}
+  &[type="warning"]{
+    background-color: $warning500;
+  }
   &[type="danger"]{
     background-color: $danger600;
   }
@@ -381,9 +472,35 @@ joomla-alert{
     background-color: $danger50;
     color: $danger600;
   }
+  &.uk-alert-success{
+    background-color: $success50;
+    color: $success600;
+  }
   &.uk-alert-warning{
     background-color: $warning50;
     color: $warning500;
+  }
+}
+.uk-notification{
+  direction: rtl;
+  a{display: none;}
+  .uk-notification-message{
+    padding: 20px;
+    @include border-radius(5px);
+    @include box-shadow(0 8px 15px 0 rgba(0, 0, 0, .08));
+    div{
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      @extend .f500;
+      @extend .font;
+    }
+    &.uk-notification-message-success{
+      background-color: $success600;
+    }
+    &.uk-notification-message-danger{
+      background-color: $danger600;
+    }
   }
 }
 
@@ -438,6 +555,7 @@ joomla-alert{
   }
 }
 .uk-text-primary{color: $primary !important;}
+.uk-text-accent{color: $accent;}
 .uk-button{
   font-size: 0;
   font-variation-settings: 'wght' 500;
@@ -489,6 +607,13 @@ joomla-alert{
   &.uk-button-primary{
     background-color: $primary;
     color: #fff;
+    &:hover{
+      background-color: darken($primary, 4%);;
+    }
+    &:active{
+      background-color: darken($primary, 8%);
+      @include box-shadow(inset 0 4px 7px 0 rgba(0, 0, 0, .2));
+    }
   }
   &.uk-button-disabled{
     color: $gray300;
@@ -506,6 +631,76 @@ joomla-alert{
     &:active{
       background-color: darken($danger600, 8%);
       @include box-shadow(inset 0 4px 7px 0 rgba(0, 0, 0, .2));
+    }
+  }
+  &.uk-button-success{
+    background-color: $success600;
+    color: #fff;
+    &:hover{
+      background-color: darken($success600, 4%);;
+    }
+    &:active{
+      background-color: darken($success600, 8%);
+      @include box-shadow(inset 0 4px 7px 0 rgba(0, 0, 0, .2));
+    }
+  }
+  &.uk-button-instagram{
+    background-color: #e1306c;
+    border: 1px solid darken(#e1306c, 5%);
+    color: #fff;
+    &:hover{
+      background-color: darken(#e1306c, 5%);
+    }
+  }
+  &.uk-button-facebook{
+    background-color: #3b5998;
+    border: 1px solid darken(#3b5998, 5%);
+    color: #fff;
+    &:hover{
+      background-color: darken(#3b5998, 5%);
+    }
+  }
+  &.uk-button-telegram{
+    background-color: #179cde;
+    border: 1px solid darken(#179cde, 5%);
+    color: #fff;
+    &:hover{
+      background-color: darken(#179cde, 5%);
+    }
+  }
+  &.uk-button-whatsapp{
+    background-color: #128c7e;
+    border: 1px solid darken(#128c7e, 5%);
+    color: #fff;
+    &:hover{
+      background-color: darken(#128c7e, 5%);
+    }
+  }
+  &.uk-button-twitter{
+    background-color: #1da1f2;
+    border: 1px solid darken(#1da1f2, 5%);
+    color: #fff;
+    &:hover{
+      background-color: darken(#1da1f2, 5%);
+    }
+  }
+  &.uk-button-linkedin,
+  &.uk-button-linkedin-in{
+    background-color: #0077b5;
+    border: 1px solid darken(#0077b5, 5%);
+    color: #fff;
+    &:hover{
+      background-color: darken(#0077b5, 5%);
+    }
+  }
+  &.uk-button-aparat{
+    svg{
+      path{
+        fill: #231f20;
+        &:last-child{
+          fill: #ed145b;
+        }
+      }
     }
   }
   &.uk-button-plain{
@@ -564,6 +759,12 @@ label{
   }
   &.uk-badge-success{
     background-color: $success600;
+  }
+  &.uk-badge-danger{
+    background-color: $danger600;
+  }
+  &.uk-badge-warning{
+    background-color: $warning600;
   }
 }
 .filtersCourseCount{

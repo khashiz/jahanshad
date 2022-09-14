@@ -23,9 +23,10 @@ jQuery(function ($) {
             url: splms_url,
             data: request,
             beforeSend: function () {
-                $this.find('.splms-icon').addClass(' splms-icon-spinner splms-icon-spin');
+                $this.find('.addToCartIcon').attr('class', 'far fa-spin fa-spinner');
             },
             success: function (data) {
+                UIkit.notification({ message: 'با موفقیت به سید رفت', status: 'success', pos: 'bottom-center' });
                 var newData = $.parseJSON(data);
                 $this.removeAttr('href').removeAttr('id').attr('href', newData.redirect);
                 $this.html('<i class="splms-icon-check"></i> ' + newData.button_text);

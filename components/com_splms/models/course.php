@@ -55,8 +55,13 @@ class SplmsModelCourse extends ItemModel {
 				$query->where('a.access IN (' . $groups . ')');
 
 				// lessons count
+				/*
 				$query->select("CASE WHEN lessons.count IS NULL THEN 0 ELSE lessons.count END as lessonsCount")
 					->join('LEFT', '( SELECT c.teacher_id, COUNT(c.id) AS count FROM #__splms_lessons c WHERE c.published = 1 GROUP BY c.teacher_id ) AS lessons ON a.id = lessons.teacher_id');
+				*/
+
+				$query->select("CASE WHEN lessons.count IS NULL THEN 0 ELSE lessons.count END as lessonsCount")
+					->join('LEFT', '( SELECT c.course_id, COUNT(c.id) AS count FROM #__splms_lessons c WHERE c.published = 1 GROUP BY c.course_id ) AS lessons ON a.id = lessons.course_id');
 
 				// teachers count
 				$query->select("CASE WHEN teachers.count IS NULL THEN 0 ELSE teachers.count END as teachersCount")
@@ -145,7 +150,9 @@ class SplmsModelCourse extends ItemModel {
 		$query->join('LEFT', $db->quoteName('#__splms_teachers', 'b') . ' ON (' . $db->quoteName('a.teacher_id') . ' = ' . $db->quoteName('b.id') . ')');
 		$query->where($db->quoteName('a.published')." = 1");
 		$query->where($db->quoteName('a.course_id')." = ".$db->quote($course_id));
-		$query->where($db->quoteName('a.topic_id')." = ".$db->quote($topic_id));
+		if ($topic_id) {
+			$query->where($db->quoteName('a.topic_id')." = ".$db->quote($topic_id));
+		}
 		$query->order('a.ordering DESC');
 		$db->setQuery($query);
 		$lessons = $db->loadObjectList();

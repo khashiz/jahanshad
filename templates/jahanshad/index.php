@@ -79,7 +79,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 <body class="<?php echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout') . ($task ? ' task-' . $task : ' no-task') . ($itemid ? ' itemid-' . $itemid : '') . ($pageclass ? ' ' . $pageclass : '') . ($this->direction == 'rtl' ? ' rtl' : ''); ?>">
     <header class="uk-background-white">
         <nav class="uk-background-white uk-box-shadow-small">
-            <div class="uk-container">
+            <div class="uk-container uk-container-large">
                 <div class="uk-grid-small" data-uk-grid>
                     <div class="uk-width-auto">
                         <a href="<?php echo JUri::base(); ?>" title="<?php echo $sitename; ?>" class="uk-flex uk-flex-middle uk-padding-small uk-padding-remove-horizontal uk-text-primary logo">
@@ -116,7 +116,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
         <jdoc:include type="modules" name="topout" style="html5" />
     <?php endif; ?>
     <main class="uk-padding uk-padding-remove-horizontal" data-uk-height-viewport="expand: true">
-        <div class="uk-container">
+        <div class="uk-container uk-container-large">
 	        <?php if ($this->countModules('topin', true)) : ?>
                 <jdoc:include type="modules" name="topin" style="html5" />
 	        <?php endif; ?>
@@ -146,7 +146,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
         <jdoc:include type="modules" name="reserve" style="html5" />
     <?php endif; ?>
     <footer>
-        <div class="uk-container">
+        <div class="uk-container uk-container-large">
             <div class="uk-padding uk-padding-remove-horizontal">
                 <div class="uk-flex-between uk-grid-row-medium" data-uk-grid>
                     <div class="uk-width-1-1 uk-width-1-3@s">
@@ -249,7 +249,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
                                 </div>
                             </div>
                         </div>
-                        <div class="uk-width-auto"><jdoc:include type="modules" name="newsletter" style="html5" /></div>
+                        <div class="uk-width-1-1 uk-width-1-3@s"><jdoc:include type="modules" name="newsletter" style="html5" /></div>
                     </div>
                 </div>
             </div>

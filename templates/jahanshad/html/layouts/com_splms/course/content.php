@@ -16,44 +16,35 @@ list($content, $price, $isAuthorised, $active) = $contents;
 ?>
 
 <?php if ( $content->lesson_type == 0 || $price == 0 || $isAuthorised != '' ) { ?>
-    <li class="<?php echo (!empty($active) && $active == $content->id) ? 'active' : ''; ?>">
-        <?php if (!empty($content->video_url)) :?>
-            <span>
-                <a href="<?php echo $content->lesson_url; ?>">
-                    <?php echo '['.Text::_('COM_SPLMS_LESSON') .'] ' . $content->title; ?>
-                </a>
-            </span>
-            <?php if (!empty($content->video_duration)) :?>
-            <span class="pull-right">
-                <?php echo Text::_('COM_SPLMS_COMMON_DURATION') . ': '; ?>
-                <small><?php echo $content->video_duration; ?></small>
-            </span>
-            <?php endif;?>
-
-        <?php else :?>
-            <a href="<?php echo $content->lesson_url; ?>">
-                <i class="splms-icon-book"></i>
-                <?php echo '['.Text::_('COM_SPLMS_LESSON') .'] ' . $content->title; ?>
-            </a>
-        <?php endif;?>
-    </li>
-<?php } else { ?>
-    <li>
-        <div style="display: inline;">
-            <?php if (!empty($content->video_url)) :?>
-            <i class="splms-icon-play"></i>
-            <?php else :?>
-            <i class="splms-icon-book"></i>
-            <?php endif;?>
-            <i class="splms-icon-lock"></i>
-            <?php echo '['.Text::_('COM_SPLMS_LESSON') .'] ' . $content->title; ?>
+    <div class="<?php echo (!empty($active) && $active == $content->id) ? 'active' : ''; ?>">
+        <div class="uk-background-muted uk-border-rounded uk-padding-small">
+            <div class="uk-grid-small" data-uk-grid>
+                <div class="uk-flex uk-flex-middle"><i class="far fa-<?php echo $price == 0 ? 'home' : 'check-circle'; ?> uk-text-success fa-fw icon24"></i></div>
+	            <?php if (!empty($content->video_url)) :?>
+                    <div class="uk-width-expand uk-flex uk-flex-middle"><a href="<?php echo $content->lesson_url; ?>" class="uk-text-small font ss02 uk-text-secondary f700"><?php echo $content->title; ?></a></div>
+		            <?php if (!empty($content->video_duration)) :?>
+                        <div class="uk-width-auto uk-text-small font ss02 uk-text-secondary f700"><?php echo '<span class="uk-text-muted">'.JText::sprintf('COM_SPLMS_COMMON_DURATION').' : </span>'.$content->video_duration; ?></div>
+		            <?php endif;?>
+	            <?php else :?>
+                    <div><a href="<?php echo $content->lesson_url; ?>" class="uk-text-small font ss02 uk-text-secondary f700"><?php echo $content->title; ?></a></div>
+	            <?php endif;?>
+            </div>
         </div>
-        <?php if (!empty($content->video_duration)) :?>
-        <span class="pull-right">
-            <?php echo Text::_('COM_SPLMS_COMMON_DURATION') . ': '; ?>
-            <small><?php echo $content->video_duration; ?></small>
-        </span>
-        <?php endif;?>
-    </li>
+    </div>
+<?php } else { ?>
+    <div>
+        <div class="uk-background-muted uk-border-rounded uk-padding-small">
+            <div class="uk-grid-small" data-uk-grid>
+                <div class="uk-flex uk-flex-middle"><i class="far fa-lock-alt uk-text-danger fa-fw icon24"></i></div>
+			    <?php if (!empty($content->video_url)) :?>
+                    <div class="uk-width-expand uk-flex uk-flex-middle"><a href="<?php echo $content->lesson_url; ?>" class="uk-text-small font ss02 uk-text-secondary f700"><?php echo $content->title; ?></a></div>
+				    <?php if (!empty($content->video_duration)) :?>
+                        <div class="uk-width-auto uk-text-small font ss02 uk-text-secondary f700"><?php echo '<span class="uk-text-muted">'.JText::sprintf('COM_SPLMS_COMMON_DURATION').' : </span>'.$content->video_duration; ?></div>
+				    <?php endif;?>
+			    <?php else :?>
+                    <div><a href="<?php echo $content->lesson_url; ?>" class="uk-text-small font ss02 uk-text-secondary f700"><?php echo $content->title; ?></a></div>
+			    <?php endif;?>
+            </div>
+        </div>
+    </div>
 <?php } ?>
-

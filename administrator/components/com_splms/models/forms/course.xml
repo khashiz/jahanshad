@@ -76,7 +76,7 @@
 		 <field name="spacer1" type="spacer" hr="true" />
 		 <field name="course_schedules" type="subform" class="class_schedule"
      		formsource="/administrator/components/com_splms/models/fields/classchedules.xml" multiple="true"
-	     	label="COM_SPLMS_FIELD_COURSE_SCHEDULE" description="COM_SPLMS_FIELD_COURSE_SCHEDULE_DESC" 
+	     	label="COM_SPLMS_FIELD_FAQ" description="COM_SPLMS_FIELD_COURSE_SCHEDULE_DESC"
 	     />
 		<field name="course_infos" type="subform"
 			formsource="/administrator/components/com_splms/models/fields/courseinfo.xml" multiple="true"

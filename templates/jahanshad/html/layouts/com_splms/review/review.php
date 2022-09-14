@@ -14,31 +14,29 @@ $review = $displayData['review'];
 
 if(isset($review) && $review) {
 ?>
-<div class="review-wrap review-item" id="review-id-<?php echo $review->id; ?>" data-review_id="<?php echo $review->id; ?>">
-	<div class="profile-img">
-		<img src="<?php echo SplmsHelper::getAvatar($review->created_by); ?>" alt="">
-	</div>
-	<div class="review-box">
-		<div class="reviewers-review">
-			<p class="reviewers-name">
-				<?php echo $review->name; ?>
-			</p>
-			<div class="date-time">
-				<span class="sppb-meta-date" itemprop="dateCreated"><?php echo SplmsHelper::timeago($review->created); ?></span>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<?php echo LayoutHelper::render('review.ratings', array('rating'=>$review->rating)); ?>
-	</div>
-	<div class="review-text-box">
-		<?php if(isset($review->review) && $review->review) { ?>
-		<div class="review-message">
-			<p>
-				<?php echo nl2br($review->review); ?>
-			</p>
-		</div>
-		<?php } ?>
-	</div>
+<div class="review-wrap review-item uk-text-zero" id="review-id-<?php echo $review->id; ?>" data-review_id="<?php echo $review->id; ?>">
+    <div class="uk-grid-small" data-uk-grid>
+        <div class="uk-width-auto">
+            <img src="<?php echo SplmsHelper::getAvatar($review->created_by); ?>" alt="" class="uk-border-circle uk-box-shadow-small" width="64" height="64">
+        </div>
+        <div class="uk-width-expand">
+            <div>
+                <div class="uk-child-width-auto uk-grid-divider uk-grid-small" data-uk-grid>
+                    <div class="uk-flex uk-flex-middle">
+                        <i class="far fa-user-alt uk-text-muted icon16 uk-margin-small-left"></i>
+                        <span class="uk-text-secondary uk-text-tiny font f500"><?php echo $review->name; ?></span>
+                    </div>
+                    <div class="uk-flex uk-flex-middle">
+                        <i class="far fa-clock uk-text-muted icon16 uk-margin-small-left"></i>
+                        <span class="uk-text-secondary uk-text-tiny font f500 ss02" itemprop="dateCreated"><?php echo SplmsHelper::timeago($review->created); ?></span>
+                    </div>
+                    <div class="uk-flex uk-flex-middle"><?php echo LayoutHelper::render('review.ratings', array('rating'=>$review->rating)); ?></div>
+                </div>
+            </div>
+	        <?php if(isset($review->review) && $review->review) { ?>
+                <p class="uk-text-secondary uk-text-small uk-text-justify font f700"><?php echo nl2br($review->review); ?></p>
+            <?php } ?>
+        </div>
+    </div>
 </div>
 <?php }
-

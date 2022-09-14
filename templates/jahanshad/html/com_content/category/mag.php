@@ -35,11 +35,6 @@ $htag    = $this->params->get('show_page_heading') ? 'h2' : 'h1';
 
 ?>
 <div class="com-content-category-blog blog" itemscope itemtype="https://schema.org/Blog">
-    <?php if ($this->params->get('show_page_heading')) : ?>
-        <div class="page-header">
-            <h1> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
-        </div>
-    <?php endif; ?>
 
     <?php if ($this->params->get('show_category_title', 1)) : ?>
     <<?php echo $htag; ?>>
@@ -82,7 +77,7 @@ $htag    = $this->params->get('show_page_heading') ? 'h2' : 'h1';
     <?php endif; ?>
 
     <?php if (!empty($this->lead_items)) : ?>
-        <div class="com-content-category-blog__items blog-items items-leading <?php echo $this->params->get('blog_class_leading'); ?>">
+        <div class="uk-child-width-1-1 uk-child-width-1-4@s com-content-category-blog__items blog-items items-leading <?php echo $this->params->get('blog_class_leading'); ?>" data-uk-scrollspy="cls: uk-animation-slide-bottom-small; target: > div; delay: 250;" data-uk-grid>
             <?php foreach ($this->lead_items as &$item) : ?>
                 <div class="com-content-category-blog__item blog-item" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
                     <?php
@@ -127,7 +122,7 @@ $htag    = $this->params->get('show_page_heading') ? 'h2' : 'h1';
             <?php echo $this->loadTemplate('children'); ?> </div>
     <?php endif; ?>
     <?php if (($this->params->def('show_pagination', 1) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->pagesTotal > 1)) : ?>
-        <div class="com-content-category-blog__navigation w-100">
+        <div class="com-content-category-blog__navigation w-100 uk-margin-medium-top">
             <?php if ($this->params->def('show_pagination_results', 1)) : ?>
                 <p class="com-content-category-blog__counter counter float-end pt-3 pe-2">
                     <?php echo $this->pagination->getPagesCounter(); ?>

@@ -50,7 +50,12 @@ if( $show_discount && ($course->price > $course->sale_price) && $course->sale_pr
                 <h3 class="uk-text-zero uk-margin-remove-top uk-margin-small-bottom">
                     <a href="<?php echo $course->url; ?>" class="uk-display-block uk-h5 uk-margin-remove font f700 uk-text-secondary"><?php echo $course->title; ?></a>
                 </h3>
-                <span class="uk-flex uk-flex-middle uk-text-muted uk-text-tiny f700"><i class="uk-text-warning fas fa-folder-open uk-margin-small-left"></i><?php echo $course->category_name; ?></span>
+                <span class="uk-flex uk-flex-middle uk-text-muted uk-text-tiny f500 uk-display-block"><i class="uk-text-accent fas fa-folder-open fa-fw uk-margin-small-left"></i><?php echo $course->category_name; ?></span>
+	            <?php if (!empty($course->teachers)) { ?>
+		            <?php foreach ($course->teachers as $teacher) { ?>
+                        <a href="<?php echo $teacher->url; ?>" title="" class="uk-flex uk-flex-middle uk-text-muted uk-text-tiny f500 uk-display-block"><i class="uk-text-accent fas fa-user-alt fa-fw uk-margin-small-left"></i><?php echo $teacher->title; ?></a>
+		            <?php } ?>
+	            <?php } ?>
 	            <?php if(isset($course->short_description) && !empty($course->short_description)) { ?>
                     <p class="uk-text-muted uk-text-tiny uk-text-justify f500"><?php echo $course->short_description; ?></p>
 	            <?php } ?>
@@ -64,10 +69,6 @@ if( $show_discount && ($course->price > $course->sale_price) && $course->sale_pr
                             <?php } else { ?>
 	                            <?php echo SplmsHelper::getPrice($course->price, $course->sale_price); ?>
                             <?php } ?>
-                            <div class="uk-hidden">
-                                <span class="uk-display-block uk-text-muted uk-text-tiny font f500">مجموع مبلغ</span>
-                                <span class="uk-display-block uk-text-secondary uk-text-small font ss02 f900"><div class="splms-price-box">2,500,000 تومانء</div></span>
-                            </div>
                         </li>
 			            <?php if ($course->lessonsCount) { ?>
                             <li class="uk-flex uk-flex-bottom"><span class="uk-display-block uk-text-secondary uk-text-small font ss02 f900"><?php echo Text::sprintf('COM_SPLMS_COMMON_LESSONS', $course->lessonsCount); ?></span></li>
@@ -81,24 +82,4 @@ if( $show_discount && ($course->price > $course->sale_price) && $course->sale_pr
             </div>
         </div>
     </div>
-	<?php if (!empty($course->teachers)) { ?>
-        <div class="splms-course-teacher">
-			<?php if(count($course->teachers) == 1) { ?>
-                <i class="splms-icon-teacher"></i>
-				<?php foreach ($course->teachers as $teacher) { ?>
-                    <a href="<?php echo $teacher->url; ?>">
-						<?php echo $teacher->title;?>
-                    </a>
-				<?php } ?>
-			<?php } elseif (count($course->teachers)  > 1 ) { ?>
-                <i class="splms-icon-users"></i>
-                <a href="javascipt:void(0);" id="splms-multiteacher-toogle" multiple-teachers-toggler><?php echo Text::_('COM_SPLMS_COMMON_MULTIPLE_TEACHERS');?></a>
-                <ul class="splms-course-multi-teachers">
-					<?php foreach ($course->teachers as $teacher) { ?>
-                        <li><a href="<?php echo $teacher->url; ?>"><?php echo $teacher->title; ?></a></li>
-					<?php } ?>
-                </ul>
-			<?php } ?>
-        </div>
-	<?php } ?>
 </div>
