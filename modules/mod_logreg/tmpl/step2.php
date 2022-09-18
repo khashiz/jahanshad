@@ -32,7 +32,7 @@ defined('_JEXEC') or die;
                     <i class="far fa-redo-alt uk-margin-small-left"></i>
                     <span><?php echo JText::_('AUTH_RESEND_CODE') ?></span>
                 </a>
-                <div class="uk-text-muted uk-text-tiny font f700 ss02" id="module_timer_div<?php echo $module_id; ?>"></div>
+                <div class="uk-text-muted uk-text-tiny font f500 ss02" id="module_timer_div<?php echo $module_id; ?>"></div>
             </div>
             <div class="uk-width-auto">
                 <a href="javascript:void(0);" class="uk-flex uk-flex-middle uk-text-tiny font f500 uk-text-muted" onclick="ModuleLogRegReturnFirst(<?php echo $module_id; ?>);">

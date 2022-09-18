@@ -55,19 +55,19 @@ $menu     = $app->getMenu()->getActive();
 $pageclass = $menu !== null ? $menu->getParams()->get('pageclass_sfx', '') : '';
 $netparsi = "<a href='https://netparsi.com' class='netparsi' target='_blank' rel='nofollow'>".JTEXT::sprintf('NETPARSI')."</a>";
 
-$this->setMetaData('viewport', 'width=device-width, initial-scale=1');
+$this->setMetaData('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZTYXBR490"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KCFN4Q6050"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-4ZTYXBR490');
+        gtag('config', 'G-KCFN4Q6050');
     </script>
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="<?php echo $params->get('presetcolor'); ?>">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000">
@@ -77,13 +77,16 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
     <script type="application/javascript" src="https://player.arvancloud.com/arvanplayer.min.js"></script>
 </head>
 <body class="<?php echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout') . ($task ? ' task-' . $task : ' no-task') . ($itemid ? ' itemid-' . $itemid : '') . ($pageclass ? ' ' . $pageclass : '') . ($this->direction == 'rtl' ? ' rtl' : ''); ?>">
-    <header class="uk-background-white uk-position-relative">
+    <header class="uk-background-white" data-uk-sticky="start: 200; animation: uk-animation-slide-top">
         <nav class="uk-background-white uk-box-shadow-small">
             <div class="uk-container uk-container-large">
                 <div class="uk-grid-small" data-uk-grid>
-                    <div class="uk-width-auto">
+                    <div class="uk-width-auto uk-flex uk-flex-middle uk-hidden@s">
+                        <span href="#hamMenu" data-uk-toggle class="uk-button uk-button-default uk-button-large uk-border-rounded uk-button-icon uk-box-shadow-small"><i class="fas fa-bars-staggered"></i></span>
+                    </div>
+                    <div class="uk-width-auto uk-flex uk-flex-middle">
                         <a href="<?php echo JUri::base(); ?>" title="<?php echo $sitename; ?>" class="uk-flex uk-flex-middle uk-padding-small uk-padding-remove-horizontal uk-text-primary logo">
-                            <img src="<?php echo JUri::base().'images/sprite.svg#logo'; ?>" width="84" height="60" alt="<?php echo $sitename; ?>" data-uk-svg>
+                            <img src="<?php echo JUri::base().'images/sprite.svg#logo'; ?>" width="56" height="40" alt="<?php echo $sitename; ?>" data-uk-svg>
                             <span class="uk-text-secondary uk-margin-small-right f900"><?php echo $sitename; ?></span>
                         </a>
                     </div>
@@ -92,18 +95,6 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
             </div>
         </nav>
     </header>
-    <nav class="uk-background-primary uk-margin-remove main" data-uk-sticky="animation: uk-animation-slide-top; start: 100%;">
-        <div class="uk-container">
-            <div class="uk-padding-small uk-hidden@s mobileShortcuts">
-                <div class="uk-child-width-1-3 uk-grid-small uk-grid-divider uk-text-center" data-uk-grid>
-                    <div><a href="tel:<?php echo $params->get('phone'); ?>" target="_blank" class="uk-text-white uk-flex uk-flex-middle uk-flex-center"><i class="far fa-flip-horizontal fa-phone uk-margin-small-left"></i><span class="uk-text-small font"><?php echo JText::_('CALL_US'); ?></span></a></div>
-                    <div><a href="#mahyaLocation" data-uk-toggle class="uk-text-white uk-flex uk-flex-middle uk-flex-center"><i class="far fa-map-marker-alt uk-margin-small-left"></i><span class="uk-text-small font"><?php echo JText::_('OUR_LOCATION'); ?></span></a></div>
-                    <div><a href="https://wa.me/<?php echo $params->get('mobile'); ?>" target="_blank" class="uk-text-white uk-flex uk-flex-middle uk-flex-center"><i class="fab fa-whatsapp uk-margin-small-left"></i><span class="uk-text-small font"><?php echo JText::_('WHATSAPP'); ?></span></a></div>
-                </div>
-            </div>
-            <jdoc:include type="modules" name="menu" style="html5" />
-        </div>
-    </nav>
     <?php if ($pageparams->get('show_page_heading', 1) && $pageclass != 'home') { ?>
         <section class="uk-position-relative uk-background-primary uk-text-center uk-padding uk-padding-remove-horizontal pageHeader">
             <div class="uk-container uk-position-relative">
@@ -127,7 +118,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
     <?php if ($this->countModules('topout', true)) : ?>
         <jdoc:include type="modules" name="topout" style="html5" />
     <?php endif; ?>
-    <main class="uk-padding<?php if ($pageclass == 'home') {echo '-large uk-padding-remove-bottom uk-background-primary uk-overflow-hidden';} ?> uk-padding-remove-horizontal <?php if ($pageclass == 'home') {echo 'uk-background-primary';} ?>" data-uk-height-viewport="expand: true">
+    <main class="uk-padding<?php if ($pageclass == 'home') {echo '-large uk-background-primary uk-overflow-hidden';} ?> uk-padding-remove-horizontal <?php if ($pageclass == 'home') {echo 'uk-background-primary';} ?>" data-uk-height-viewport="expand: true">
         <div class="uk-container uk-container-large">
 	        <?php if ($this->countModules('topin', true)) : ?>
                 <jdoc:include type="modules" name="topin" style="html5" />
@@ -135,13 +126,13 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
             <div class="<?php echo $pageclass == 'tickets' ? 'uk-container' : ''; ?>">
                 <div class="uk-grid-divider" data-uk-grid>
 			        <?php if ($this->countModules('sidestart', true)) : ?>
-                        <aside class="uk-width-1-1 uk-width-1-4@m uk-visible@m">
+                        <aside class="uk-width-1-1 uk-width-1-4@s uk-visible@s">
                             <div data-uk-sticky="offset: 40; bottom: true;">
                                 <div class="uk-child-width-1-1" data-uk-grid><jdoc:include type="modules" name="sidestart" style="none" /></div>
                             </div>
                         </aside>
 			        <?php endif; ?>
-                    <article class="uk-width-1-1 uk-width-expand@m">
+                    <article class="uk-width-1-1 uk-width-expand@s">
                         <jdoc:include type="component" />
                     </article>
 			        <?php if ($this->countModules('sideend', true)) : ?>
@@ -264,11 +255,6 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
             </div>
         </div>
     </footer>
-    <div id="ourLocation" class="uk-flex-top" data-uk-modal>
-        <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical uk-overflow-hidden uk-border-rounded uk-box-shadow-medium">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1617.8537359170602!2d51.40547965821719!3d35.80711417029018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x66d10737d1f5457!2zMzXCsDQ4JzI1LjYiTiA1McKwMjQnMjMuNyJF!5e0!3m2!1sen!2s!4v1662427888107!5m2!1sen!2s" width="1280" height="720" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-uk-responsive></iframe>
-        </div>
-    </div>
     <div id="hamMenu" data-uk-offcanvas="overlay: true">
         <div class="uk-offcanvas-bar uk-card uk-card-default uk-padding-remove bgWhite">
             <div class="uk-flex uk-flex-column uk-height-1-1">
@@ -277,7 +263,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
                         <div class="uk-grid-collapse uk-height-1-1" data-uk-grid>
                             <div class="uk-flex uk-width-1-4 uk-flex uk-flex-center uk-flex-middle"><a onclick="UIkit.offcanvas('#hamMenu').hide();" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><i class="far fa-chevron-right"></i></a></div>
                             <div class="uk-flex uk-width-expand uk-flex uk-flex-right uk-flex-middle uk-text-white">
-                                <span class="font uk-flex uk-flex-middle uk-text-white uk-text-bold uk-h3 uk-margin-remove"><?php echo $sitename; ?></span>
+                                <span class="font uk-flex uk-flex-middle uk-text-white uk-text-bold uk-h5 uk-margin-remove"><?php echo $sitename; ?></span>
                             </div>
                         </div>
                     </div>
@@ -286,6 +272,25 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
             </div>
         </div>
     </div>
+    <?php if ($user->id) { ?>
+        <div id="userMenu" data-uk-offcanvas="overlay: true">
+            <div class="uk-offcanvas-bar uk-card uk-card-default uk-padding-remove bgWhite">
+                <div class="uk-flex uk-flex-column uk-height-1-1">
+                    <div class="uk-width-expand">
+                        <div class="offcanvasTop uk-box-shadow-small uk-position-relative uk-flex-stretch uk-background-primary">
+                            <div class="uk-grid-collapse uk-height-1-1" data-uk-grid>
+                                <div class="uk-flex uk-width-1-4 uk-flex uk-flex-center uk-flex-middle"><a onclick="UIkit.offcanvas('#userMenu').hide();" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><i class="far fa-chevron-right"></i></a></div>
+                                <div class="uk-flex uk-width-expand uk-flex uk-flex-right uk-flex-middle uk-text-white">
+                                    <span class="font uk-flex uk-flex-middle uk-text-white uk-text-bold uk-h5 uk-margin-remove"><?php echo $user->name; ?></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-padding-small"><jdoc:include type="modules" name="offcanvasuser" style="xhtml" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
 	<jdoc:include type="modules" name="debug" style="none" />
 </body>
 </html>

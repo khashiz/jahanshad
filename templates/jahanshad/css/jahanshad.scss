@@ -63,6 +63,26 @@ a{
     text-decoration: none;
   }
 }
+header{
+  z-index: 981 !important;
+  @media (max-width: 639px) {
+    .cartDrop{
+      width: 100%;
+    }
+    .logo{
+      svg{
+        width: 40px;
+      }
+    }
+    .uk-button-icon{
+      width: 40px !important;
+      height: 40px !important;
+      i{
+        font-size: 16px;
+      }
+    }
+  }
+}
 nav{
   //background-color: $gray100;
   .mainMenu{
@@ -80,6 +100,11 @@ nav{
         justify-content: center;
         height: 100%;
         @extend %font;
+        > i{
+          font-size: 16px;
+          margin-left: 8px;
+          @include transform(translateY(-1px));
+        }
         &:hover{
           color: $primary;
         }
@@ -87,46 +112,6 @@ nav{
       &.active{
         > a{
           color: $primary;
-        }
-      }
-    }
-  }
-  .subMenuWrapper {
-    width: 250px;
-    border-top: 2px solid $accent;
-    @include border-radius(0 0 5px 5px);
-    > ul {
-      list-style: none;
-      margin: 0;
-      > li {
-        > a {
-          font-size: 14px;
-          display: block;
-          padding: 10px 15px;
-          text-decoration: none;
-          color: $gray900;
-          @extend .font;
-          @extend .f700;
-          @include border-radius(5px);
-          @include transition(all .3s ease-in-out);
-
-          &[aria-expanded="true"],
-          &:hover {
-            background-color: $primary;
-            color: #fff;
-          }
-
-          + div {
-            &[data-uk-drop] {
-              > div {
-                @include border-radius(5px);
-              }
-            }
-          }
-        }
-
-        &:not(:first-child) {
-          margin-top: 1px;
         }
       }
     }
@@ -272,13 +257,17 @@ section{
     &:not(:first-child){
       margin-top: 1px;
     }
-    &:last-child{
-      a{
-        &:hover{
-          color: $danger600;
-          background-color: $danger50;
-          i{
+  }
+  &.hasEnd{
+    li{
+      &:last-child{
+        a{
+          &:hover{
             color: $danger600;
+            background-color: $danger50;
+            i{
+              color: $danger600;
+            }
           }
         }
       }
@@ -379,6 +368,10 @@ footer{
           color: $gray300;
           @extend %font;
           @include transition();
+          > i{
+            margin-left: 8px;
+            @include transform(translateY(1px));
+          }
           &:hover{
             color: #fff;
           }
@@ -716,6 +709,17 @@ joomla-alert{
       @include box-shadow(inset 0 4px 7px 0 rgba(0, 0, 0, .2));
     }
   }
+  &.uk-button-accent{
+    background-color: $accent;
+    color: #fff;
+    &:hover{
+      background-color: darken($accent, 4%);;
+    }
+    &:active{
+      background-color: darken($accent, 8%);
+      @include box-shadow(inset 0 4px 7px 0 rgba(0, 0, 0, .2));
+    }
+  }
   &.uk-button-disabled{
     color: $gray300;
     cursor: auto;
@@ -924,6 +928,89 @@ label{
     &:hover{
       background-color: $danger600;
       color: #fff;
+    }
+  }
+}
+
+.uk-offcanvas{
+  z-index: 9999;
+  &:before{
+    background-color: rgba(0, 0, 0, .5);
+  }
+  div{
+    &.uk-offcanvas-bar{
+      background-color: #fff;
+      a{
+        &.logo{
+          color: #e0e0e0;
+        }
+      }
+      div{
+        &.offcanvasTop{
+          height: 70px;
+          a{
+            color: #fff;
+          }
+          &.active{
+            height: 60px;
+          }
+          .logo{
+            svg{
+              path{
+                fill: $accent;
+                &:first-of-type{
+                  fill: #fff;
+                }
+              }
+              polygon{fill: $accent;}
+              rect{fill: #fff;}
+            }
+          }
+        }
+      }
+      ul{
+        &.uk-nav{
+          >li{
+            > a{
+              font-size: 16px;
+              font-weight: 700;
+              padding: 15px 0;
+              color: $gray900;
+              @extend .font;
+            }
+            ul{
+              >li{
+                >a{
+                  font-size: 14px;
+                  font-weight: 500;
+                  display: block;
+                  padding: 0 15px 20px 0;
+                  color: $gray700;
+                  @extend .font;
+                }
+              }
+            }
+            &.uk-parent{
+              > a{
+                &:after{
+                  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%221%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%221%22%20height%3D%2213%22%20x%3D%226%22%20y%3D%220%22%20%2F%3E%0A%3C%2Fsvg%3E");
+                  opacity: .3;
+                }
+              }
+              &.uk-open{
+                > a{
+                  &:after{
+                    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%221%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%3C%2Fsvg%3E");
+                  }
+                }
+              }
+            }
+            &:not(:first-child){
+              border-top: 1px solid #f0f0f0;
+            }
+          }
+        }
+      }
     }
   }
 }

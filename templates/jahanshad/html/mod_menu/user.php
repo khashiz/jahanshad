@@ -25,15 +25,18 @@ if ($tagId = $params->get('tag_id', '')) {
 
 $user =& JFactory::getUser();
 ?>
-<div class="uk-width-auto uk-flex uk-flex-middle">
+<div class="uk-width-auto uk-flex uk-flex-middle uk-hidden@s">
+    <span href="#userMenu" data-uk-toggle class="uk-button uk-button-default uk-button-large uk-border-rounded uk-button-icon uk-box-shadow-small"><i class="fas fa-user"></i></span>
+</div>
+<div class="uk-width-auto uk-flex uk-flex-middle uk-visible@s">
     <a href="#" class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-box-shadow-small">
         <i class="far fa-user"></i>
         <span><?php echo $user->name; ?></span>
     </a>
-    <div data-uk-drop="pos: bottom-left; offset:17; animation: uk-animation-slide-bottom-small">
+    <div data-uk-drop="pos: bottom-left; offset:0; animation: uk-animation-slide-bottom-small; target: header .uk-container .uk-grid; shift: false; flip: false;">
         <div class="topDrop">
             <div class="topDropWrapper">
-                <ul<?php echo $id; ?> class="listContainer uk-padding-small <?php echo $class_sfx; ?>">
+                <ul<?php echo $id; ?> class="listContainer hasEnd uk-padding-small <?php echo $class_sfx; ?>">
 					<?php foreach ($list as $i => &$item) {
 						$itemParams = $item->getParams();
 						$class      = 'nav-item item-' . $item->id;

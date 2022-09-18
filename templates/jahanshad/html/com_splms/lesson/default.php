@@ -73,7 +73,7 @@ use Joomla\CMS\Layout\LayoutHelper;
 	        <?php } ?>
         </div>
         <div class="uk-width-1-1 uk-width-1-4@s">
-            <div data-uk-sticky="offset: 40; bottom: true;">
+            <div data-uk-sticky="offset: 125; bottom: true;">
                 <div class="uk-child-width-1-1 uk-grid-divider uk-grid-medium uk-text-center" data-uk-grid>
 	                <?php if (isset($this->item->attachment) && $this->item->attachment) { ?>
                         <div>

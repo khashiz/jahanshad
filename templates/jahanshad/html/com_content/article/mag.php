@@ -141,19 +141,19 @@ $isExpired         = !is_null($this->item->publish_down) && $this->item->publish
 
     <hr class="uk-margin-medium">
     <div class="uk-grid-small uk-grid-match" data-uk-grid>
-        <div class="uk-width-1-1 uk-width-auto@m uk-flex uk-flex-middle uk-text-center uk-text-right@m">
+        <div class="uk-width-1-1 uk-width-auto@s uk-flex uk-flex-middle uk-text-center uk-text-right@s">
             <span class="uk-display-block uk-text-tiny font f500 uk-text-muted"><?php echo JText::sprintf('SHARETHIS'); ?></span>
         </div>
-        <div class="uk-width-1-1 uk-width-expand@m">
-            <ul class="uk-grid-small uk-child-width-1-4 uk-child-width-auto@m" data-uk-grid>
+        <div class="uk-width-1-1 uk-width-expand@s">
+            <ul class="uk-grid-small uk-child-width-1-4 uk-child-width-auto@s" data-uk-grid>
                 <li><a href="https://www.facebook.com/sharer.php?u=<?php echo JURI::current(); ?>" target="_blank" class="socialButton uk-button uk-border-rounded uk-box-shadow-small uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-button-facebook"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="https://twitter.com/share?url=<?php echo JURI::current(); ?>&text=<?php echo $this->escape($this->item->title); ?>" target="_blank" class="socialButton uk-button uk-border-rounded uk-box-shadow-small uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-button-twitter"><i class="fab fa-twitter"></i></a></li>
                 <li><a href="tg://msg_url?url=<?php echo JURI::current(); ?>&text=<?php echo $this->escape($this->item->title); ?>" target="_blank" class="socialButton uk-button uk-border-rounded uk-box-shadow-small uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-button-telegram"><i class="fab fa-telegram"></i></a></li>
                 <li><a href="https://wa.me/?text=<?php echo JURI::current(); ?>" target="_blank" class="socialButton uk-button uk-border-rounded uk-box-shadow-small uk-flex uk-flex-center uk-flex-middle uk-padding-small uk-button-whatsapp"><i class="fab fa-whatsapp"></i></a></li>
             </ul>
         </div>
-        <div class="uk-width-1-1 uk-width-auto@m">
-            <a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($this->item->slug)); ?>" class="uk-button uk-button-default uk-border-rounded uk-box-shadow-small uk-button-large">
+        <div class="uk-width-1-1 uk-width-auto@s">
+            <a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($this->item->slug)); ?>" class="uk-button uk-button-default uk-border-rounded uk-box-shadow-small uk-button-large uk-flex-center">
                 <span><?php echo JText::sprintf('BACKTO').' '.$this->item->category_title; ?></span>
                 <i class="far fa-arrow-left uk-margin-right"></i>
             </a>
@@ -162,6 +162,6 @@ $isExpired         = !is_null($this->item->publish_down) && $this->item->publish
 
 </div>
 <div class="uk-width-1-1 uk-width-1-4@s">
-    <div data-uk-sticky="offset: 40; bottom: true;"><?php echo JHtml::_('content.prepare', '{loadposition magside}') ?></div>
+    <div data-uk-sticky="offset: 125; bottom: true;"><?php echo JHtml::_('content.prepare', '{loadposition magside}') ?></div>
 </div>
 </div>

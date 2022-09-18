@@ -16,10 +16,10 @@ if(isset($review) && $review) {
 ?>
 <div class="review-wrap review-item uk-text-zero" id="review-id-<?php echo $review->id; ?>" data-review_id="<?php echo $review->id; ?>">
     <div class="uk-grid-small" data-uk-grid>
-        <div class="uk-width-auto">
+        <div class="uk-width-auto uk-visible@s">
             <img src="<?php echo SplmsHelper::getAvatar($review->created_by); ?>" alt="" class="uk-border-circle uk-box-shadow-small" width="64" height="64">
         </div>
-        <div class="uk-width-expand">
+        <div class="uk-width-1-1 uk-width-expand@s">
             <div>
                 <div class="uk-child-width-auto uk-grid-divider uk-grid-small" data-uk-grid>
                     <div class="uk-flex uk-flex-middle">

@@ -8,7 +8,7 @@ function ModuleLogRegStep1(module_id) {
   mobileNum.val(CleanString(mobileNum.val()));
   var mobileNumVal = mobileNum.val();
   if (mobileNumVal.length !== 11) {
-    UIkit.notification({ message: 'تعداد ارقام شماره موبایل صحیح نیست', status: 'danger', pos: 'bottom-center' });
+    UIkit.notification({ message: 'تعداد ارقام شماره موبایل صحیح نیست', status: 'danger', pos: 'top-center' });
     jQuery('.authWrapper').addClass('uk-animation-shake');
     setTimeout(() => {
       jQuery('.authWrapper').removeClass('uk-animation-shake');
@@ -16,7 +16,7 @@ function ModuleLogRegStep1(module_id) {
     return false;
   }
   else if (((mobileNumVal.charAt(0) + mobileNumVal.charAt(1)) !== "09") && ((mobileNumVal.charAt(0) + mobileNumVal.charAt(1)) !== "۰۹")) {
-    UIkit.notification({ message: 'شماره شما باید با ۰۹ شروع شود', status: 'danger', pos: 'bottom-center' });
+    UIkit.notification({ message: 'شماره شما باید با ۰۹ شروع شود', status: 'danger', pos: 'top-center' });
     jQuery('.authWrapper').addClass('uk-animation-shake');
     setTimeout(() => {
       jQuery('.authWrapper').removeClass('uk-animation-shake');
@@ -37,14 +37,14 @@ function ModuleLogRegStep1(module_id) {
     },
     success: function (data, status, xhr) {
       if (data.status == 0) {
-        UIkit.notification({ message: data.message, status: 'danger', pos: 'bottom-center' });
+        UIkit.notification({ message: data.message, status: 'danger', pos: 'top-center' });
         jQuery('.authWrapper').addClass('uk-animation-shake');
         setTimeout(() => {
           jQuery('.authWrapper').removeClass('uk-animation-shake');
         }, 1000);
         return false;
       } else {
-        UIkit.notification({ message: data.message, status: 'success', pos: 'bottom-center' });
+        UIkit.notification({ message: data.message, status: 'success', pos: 'top-center' });
       }
 
       jQuery('#mod_logreg' + module_id).fadeOut(1, function () {
@@ -85,7 +85,7 @@ function ModuleLogRegStep2(module_id) {
   authcode.val(CleanString(authcode.val()));
   var authcodeVal = authcode.val();
   if (!authcodeVal) {
-    UIkit.notification({ message: 'کد تایید خالی می باشد', status: 'danger', pos: 'bottom-center' });
+    UIkit.notification({ message: 'کد تایید خالی می باشد', status: 'danger', pos: 'top-center' });
     jQuery('.authWrapper').addClass('uk-animation-shake');
     setTimeout(() => {
       jQuery('.authWrapper').removeClass('uk-animation-shake');
@@ -106,7 +106,7 @@ function ModuleLogRegStep2(module_id) {
     },
     success: function (data, status, xhr) {
       if (data.status == 0) {
-        UIkit.notification({ message: data.message, status: 'danger', pos: 'bottom-center' });
+        UIkit.notification({ message: data.message, status: 'danger', pos: 'top-center' });
         jQuery('.authWrapper').addClass('uk-animation-shake');
         setTimeout(() => {
           jQuery('.authWrapper').removeClass('uk-animation-shake');
@@ -114,7 +114,7 @@ function ModuleLogRegStep2(module_id) {
         jQuery('.authLoader').attr('hidden','');
         return false;
       } else {
-        UIkit.notification({ message: data.message, status: 'success', pos: 'bottom-center' });
+        UIkit.notification({ message: data.message, status: 'success', pos: 'top-center' });
       }
 
       if (data.additional.isregisteration == "1") {
@@ -148,7 +148,7 @@ function ModuleLogRegStep3(module_id) {
 
   var username_m = formEl.find('#username').val();
   if (!username_m) {
-    UIkit.notification({ message: 'نام کاربری خالی می باشد', status: 'danger', pos: 'bottom-center' });
+    UIkit.notification({ message: 'نام کاربری خالی می باشد', status: 'danger', pos: 'top-center' });
     jQuery('.authWrapper').addClass('uk-animation-shake');
     setTimeout(() => {
       jQuery('.authWrapper').removeClass('uk-animation-shake');
@@ -158,7 +158,7 @@ function ModuleLogRegStep3(module_id) {
 
   var name_m = formEl.find('#name').val();
   if (!name_m) {
-    UIkit.notification({ message: 'نام خالی می باشد', status: 'danger', pos: 'bottom-center' });
+    UIkit.notification({ message: 'نام خالی می باشد', status: 'danger', pos: 'top-center' });
     jQuery('.authWrapper').addClass('uk-animation-shake');
     setTimeout(() => {
       jQuery('.authWrapper').removeClass('uk-animation-shake');
@@ -176,7 +176,7 @@ function ModuleLogRegStep3(module_id) {
     data: data,
     success: function (data, status, xhr) {
       if (data.status == 0) {
-        UIkit.notification({ message: data.message, status: 'danger', pos: 'bottom-center' });
+        UIkit.notification({ message: data.message, status: 'danger', pos: 'top-center' });
         jQuery('.authWrapper').addClass('uk-animation-shake');
         setTimeout(() => {
           jQuery('.authWrapper').removeClass('uk-animation-shake');
@@ -184,11 +184,11 @@ function ModuleLogRegStep3(module_id) {
         // alert(data.message);
         return false;
       } else {
-        UIkit.notification({ message: data.message, status: 'success', pos: 'bottom-center' });
+        UIkit.notification({ message: data.message, status: 'success', pos: 'top-center' });
         // alert(data.message);
       }
 
-      UIkit.notification({ message: data.message, status: 'warning', pos: 'bottom-center' });
+      UIkit.notification({ message: data.message, status: 'warning', pos: 'top-center' });
       // alert(data.message);
       ModuleLogRegLoginProccess(data.additional.url, module_id);
     },
@@ -215,7 +215,7 @@ function ModuleLogRegLoginProccess(url, module_id) {
     data: {},
     success: function (data, status, xhr) {
       if (data.status == 0) {
-        UIkit.notification({ message: data.message, status: 'danger', pos: 'bottom-center' });
+        UIkit.notification({ message: data.message, status: 'danger', pos: 'top-center' });
         // alert(data.message);
       }
 
@@ -248,11 +248,11 @@ function ModuleLogRegResend(module_id) {
     data: {},
     success: function (data, status, xhr) {
       if (data.status == 0) {
-        UIkit.notification({ message: data.message, status: 'danger', pos: 'bottom-center' });
+        UIkit.notification({ message: data.message, status: 'danger', pos: 'top-center' });
         // alert(data.message);
         return false;
       } else {
-        UIkit.notification({ message: data.message, status: 'success', pos: 'bottom-center' });
+        UIkit.notification({ message: data.message, status: 'success', pos: 'top-center' });
         // alert(data.message);
       }
 

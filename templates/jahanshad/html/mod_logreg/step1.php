@@ -19,7 +19,7 @@ defined('_JEXEC') or die;
             <div>
                 <label for="mobilenum" class="uk-form-label uk-text-center"></label>
                 <div>
-                    <input type="tel" autofocus class="uk-form-large uk-text-center ltr uk-input form-control" id="mobilenum_m<?php echo $module_id; ?>" onKeyPress="numberValidate(event)" placeholder="لطفاً شماره موبایل خود را وارد کنید" autocomplete="off" maxlength="11">
+                    <input type="tel" class="uk-form-large uk-text-center ltr uk-input form-control" id="mobilenum_m<?php echo $module_id; ?>" onKeyPress="numberValidate(event)" placeholder="لطفاً شماره موبایل خود را وارد کنید" autocomplete="off" maxlength="11">
                 </div>
             </div>
             <div>

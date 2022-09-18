@@ -19,12 +19,15 @@ $app = JFactory::getApplication();
 $module_id = $module->id;
 ?>
 <div class="uk-width-auto uk-flex uk-flex-middle">
-    <a href="#authModal" data-uk-toggle class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-box-shadow-small">
+    <div class="uk-width-auto uk-flex uk-flex-middle uk-hidden@s">
+        <span href="#authModal" data-uk-toggle class="uk-button uk-button-default uk-button-large uk-border-rounded uk-button-icon uk-box-shadow-small"><i class="fas fa-user"></i></span>
+    </div>
+    <a href="#authModal" data-uk-toggle class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-box-shadow-small uk-visible@s">
         <i class="far fa-user-plus"></i>
         <span><?php echo JText::_('AUTH_TITLE'); ?></span>
     </a>
-    <div id="authModal" data-uk-modal>
-        <div class="uk-modal-dialog uk-modal-body uk-border-rounded uk-overflow-hidden uk-box-shadow-medium authWrapper">
+    <div id="authModal" class="uk-flex-top" data-uk-modal>
+        <div class="uk-modal-dialog uk-margin-auto-vertical uk-modal-body uk-border-rounded uk-overflow-hidden uk-box-shadow-medium authWrapper">
             <h4 class="uk-text-center uk-text-secondary font f700"><?php echo JText::_('AUTH_TITLE'); ?></h4>
             <div id="mod_logreg<?php echo $module->id; ?>" class="mod_logreg"><?php require "step1.php"; ?></div>
             <input type="hidden" id="delayMiliSecond<?php echo $module->id; ?>" value="<?php echo $params->get('delayMiliSecond', 2000); ?>">

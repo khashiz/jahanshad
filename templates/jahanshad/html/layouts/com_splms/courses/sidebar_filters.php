@@ -45,7 +45,7 @@ $terms    = htmlspecialchars($input->get('terms', '', 'STRING'));
 ?>
 
 <div class="uk-width-1-1 uk-width-1-4@s">
-    <aside data-uk-sticky="offset: 40; bottom: true;">
+    <aside data-uk-sticky="offset: 125; bottom: true;">
         <h3 class="font f900 uk-h4 uk-hidden"><?php echo Text::_('COM_SPLMS_FILTERS_TITLE'); ?></h3>
         <form action="<?php echo Route::_('index.php?option=com_splms&view=courses', false); ?>" id="splms-courses-filters-form" class="splms-courses-filters">
             <div class="uk-child-width-1-1 uk-grid-medium uk-grid-divide" data-uk-grid>

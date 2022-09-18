@@ -24,9 +24,9 @@ $user = Factory::getUser();
 
 <div id="splms">
 	<div data-uk-grid>
-        <div class="uk-width-1-1 uk-width-1-6@s">
-            <div class="" data-uk-sticky="offset: 40; bottom: true;">
-                <ul class="uk-padding-remove uk-margin-remove listContainer" data-uk-scrollspy-nav="closest: li; scroll: true">
+        <div class="uk-width-1-1 uk-width-1-6@s uk-visible@s">
+            <div class="" data-uk-sticky="offset: 125; bottom: true;">
+                <ul class="uk-padding-remove uk-margin-remove listContainer" data-uk-scrollspy-nav="closest: li; scroll: true; offset: 85">
                     <li class="nav-item item-133"><a href="#info"><i class="far fa-fw fa-info-circle"></i><span><?php echo JText::_('COURSE_INFO'); ?></span></a></li>
                     <?php if ($this->item->description) { ?>
                         <li class="nav-item item-133"><a href="#intro"><i class="far fa-fw fa-bullhorn"></i><span><?php echo JText::_('COURSE_INTRO'); ?></span></a></li>
@@ -70,7 +70,7 @@ $user = Factory::getUser();
                                 <p class="uk-margin-remove uk-text-small uk-text-justify uk-text-secondary font f500"><?php echo $this->item->short_description; ?></p>
                             </div>
 	                    <?php } ?>
-                        <ul class="uk-grid-divider uk-child-width-1-4@s uk-text-center uk-grid-small uk-margin-medium-top" data-uk-grid>
+                        <ul class="uk-grid-divider uk-child-width-1-2 uk-child-width-1-4@s uk-text-center uk-grid-small uk-margin-medium-top" data-uk-grid>
                             <li>
                                 <span class="uk-display-block"><i class="far fa-timer fa-2x uk-text-accent"></i></span>
                                 <span class="uk-text-muted uk-text-tiny font f500"><?php echo JText::_('DURATION'); ?></span>
@@ -185,7 +185,7 @@ $user = Factory::getUser();
                                         <div class="uk-margin-bottom"><i class="far fa-3x fa-comment-alt-dots uk-text-muted"></i></div>
                                         <p class="font uk-text-secondary uk-margin-medium-bottom uk-margin-remove-top f700"><?php echo JText::_('COM_SPLMS_LOGIN_TO_REVIEW'); ?></p>
                                         <div class="uk-width-1-1 uk-width-1-2@s uk-margin-auto">
-                                            <a class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center" href="#authModal" data-uk-toggle><i class="far fa-sign-in fa-flip-horizontal"></i><span><?php echo JText::_('JLOGIN'); ?></span></a>
+                                            <a class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center" href="#authModal" data-uk-toggle><i class="far fa-user-plus"></i><span><?php echo JText::_('LOGIN_REGISTER'); ?></span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +252,7 @@ $user = Factory::getUser();
             </div>
 		</div>
         <div class="uk-width-1-1 uk-width-1-4@s">
-            <div data-uk-sticky="offset: 40; bottom: true;">
+            <div data-uk-sticky="offset: 125; bottom: true;">
                 <div class="uk-child-width-1-1 uk-grid-divider uk-grid-medium uk-text-center" data-uk-grid>
                     <div>
 		                <?php if (($this->item->price != 0) && ($this->isAuthorised == '') ) { ?>
@@ -262,7 +262,7 @@ $user = Factory::getUser();
                                 <span><?php echo Text::_('COM_SPLMS_BUY_NOW'); ?></span>
                             </a>
 		                <?php } elseif ($this->isAuthorised != '') { ?>
-                            <a href="#lessons<?php // echo JUri::base().'my-courses'; ?>" data-uk-scroll class="uk-button uk-button-success uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center uk-width-1-1">
+                            <a href="#lessons<?php // echo JUri::base().'my-courses'; ?>" data-uk-scroll="offset: 85" class="uk-button uk-button-success uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center uk-width-1-1">
                                 <i class="fas fa-check-circle"></i>
 				                <span><?php echo Text::_('COM_SPLMS_PURCHASED'); ?></span>
                             </a>

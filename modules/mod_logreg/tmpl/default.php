@@ -26,24 +26,3 @@ $module_id = $module->id;
 <input type="hidden" id="delayMiliSecond<?php echo $module->id; ?>" value="<?php echo $params->get('delayMiliSecond', 2000); ?>">
 
 <div id="modLogRegLoading<?php echo $module->id; ?>"></div>
-
-<style>
-  #modLogRegLoading<?php echo $module->id; ?> {
-    display: none;
-  }
-
-  #modLogRegLoading<?php echo $module->id; ?>.show {
-    display: block;
-    position: absolute;
-    z-index: 99999;
-    background-image: url('<?php echo Uri::root(true); ?>/modules/mod_logreg/assets/loading.gif');
-    background-color: #333;
-    opacity: 0.6;
-    background-repeat: no-repeat;
-    background-position: center;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    top: 0;
-  }
-</style>

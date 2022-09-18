@@ -26,9 +26,9 @@ $mobile = sprintf("%s %s %s",
 	substr($params->get('mobile'), 7));
 ?>
 <div class="uk-grid-divider uk-flex-center" data-uk-grid>
-    <div class="uk-width-1-1 uk-width-expand@m"><?php echo RSFormProHelper::displayForm($this->formId); ?></div>
+    <div class="uk-width-1-1 uk-width-expand@s"><?php echo RSFormProHelper::displayForm($this->formId); ?></div>
 	<?php if ($this->formId == 4) { ?>
-        <div class="uk-width-1-1 uk-width-1-3@m">
+        <div class="uk-width-1-1 uk-width-1-3@s">
             <div>
                 <div>
                     <div class="uk-child-width-1-1" data-uk-grid>
@@ -98,7 +98,7 @@ $mobile = sprintf("%s %s %s",
                             </div>
                         </div>
 						<?php if (!empty($params->get('lat')) && !empty($params->get('lng'))) { ?>
-                            <div class="uk-hidden@m">
+                            <div class="uk-hidden@s">
                                 <h3 class="font uk-h4 f900"><?php echo JText::sprintf('PATHFINDER'); ?></h3>
                                 <div>
                                     <div class="uk-grid-small uk-child-width-1-2" data-uk-grid>
@@ -118,16 +118,8 @@ $mobile = sprintf("%s %s %s",
         </div>
 	<?php } ?>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div id="ourLocation" class="uk-flex-top" data-uk-modal>
+    <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1617.8537359170602!2d51.40547965821719!3d35.80711417029018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x66d10737d1f5457!2zMzXCsDQ4JzI1LjYiTiA1McKwMjQnMjMuNyJF!5e0!3m2!1sen!2s!4v1662427888107!5m2!1sen!2s" width="1280" height="720" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-uk-responsive></iframe>
+    </div>
+</div>
