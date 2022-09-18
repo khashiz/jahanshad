@@ -23,26 +23,28 @@ if( $show_discount && ($course->price > $course->sale_price) && $course->sale_pr
     $discount_percentage = (($course->price - $course->sale_price)*100) /$course->price;
 }
 ?>
-
 <div class="uk-box-shadow-small uk-border-rounded uk-overflow-hidden uk-height-1-1 uk-flex uk-flex-column">
     <div class="uk-position-relative">
-        <div class="uk-position-small uk-position-top-right badges">
+        <div class="uk-position-small uk-position-top-right badges uk-position-z-index">
             <?php if ($course->featured_course) { ?>
             <span class="uk-badge uk-badge-primary uk-box-shadow-small ss02"><?php echo JText::_('COM_SPLMS_FEATURED_COURSE'); ?></span>
             <?php } ?>
         </div>
-        <div class="uk-position-small uk-position-top-left badges">
+        <div class="uk-position-small uk-position-top-left badges uk-position-z-index">
 	        <?php if ($course->price == 0) { echo '<span class="uk-badge uk-badge-success uk-box-shadow-small">' . Text::_('COM_SPLMS_FREE') . '</span>'; } ?>
 	        <?php if( $show_discount && $course->sale_price && isset($discount_percentage) && $discount_percentage) { ?>
                 <span class="uk-badge uk-badge-success uk-box-shadow-small ss02"><?php echo Text::sprintf('COM_SPLMS_COURSES_PERCENT_OFF', round($discount_percentage)); ?></span>
 	        <?php }?>
         </div>
-        <div class="uk-position-small uk-position-bottom-right badges">
+        <div class="uk-position-small uk-position-bottom-right badges uk-position-z-index">
             <?php if ($course->duration) { ?>
                 <span class="uk-badge uk-badge-default uk-box-shadow-small ss02"><?php echo $course->duration; ?></span>
             <?php } ?>
         </div>
-        <img src="<?php echo !empty($course->image) ? $course->thumbnail : 'images/placeholder-med.svg'; ?>" class="" alt="<?php echo $course->title; ?>">
+        <a href="<?php echo $course->url; ?>" class="uk-display-block uk-cover-container">
+            <canvas width="400" height="300"></canvas>
+            <img src="<?php echo !empty($course->image) ? $course->thumbnail : 'images/placeholder-med.svg'; ?>" class="" alt="<?php echo $course->title; ?>" data-uk-cover>
+        </a>
     </div>
     <div class="uk-padding-small uk-flex-1">
         <div class="uk-flex uk-flex-column uk-flex-between uk-height-1-1">

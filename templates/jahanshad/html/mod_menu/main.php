@@ -25,7 +25,7 @@ if ($tagId = $params->get('tag_id', '')) {
 
 // The menu class is deprecated. Use mod-menu instead
 ?>
-<div class="uk-width-expand">
+<div class="uk-width-expand uk-visible@s">
 <div class="uk-flex uk-flex-middle uk-height-1-1">
 <ul<?php echo $id; ?> class="uk-flex uk-flex-middle uk-height-1-1 uk-margin-remove uk-padding-remove mainMenu <?php echo $class_sfx; ?>">
 <?php foreach ($list as $i => &$item) {
@@ -81,11 +81,11 @@ if ($tagId = $params->get('tag_id', '')) {
 
     // The next item is deeper.
     if ($item->deeper) {
-        echo '<ul class="mod-menu__sub list-unstyled small">';
+	    echo '<div data-uk-drop="animation: uk-animation-slide-bottom-small; offset: 0;"><div class="uk-background-white uk-box-shadow-small subMenuWrapper"><ul class="uk-padding-small">';
     } elseif ($item->shallower) {
         // The next item is shallower.
         echo '</li>';
-        echo str_repeat('</ul></li>', $item->level_diff);
+        echo str_repeat('</ul></div></div></li>', $item->level_diff);
     } else {
         // The next item is on the same level.
         echo '</li>';

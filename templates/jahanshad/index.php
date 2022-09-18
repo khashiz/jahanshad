@@ -77,7 +77,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
     <script type="application/javascript" src="https://player.arvancloud.com/arvanplayer.min.js"></script>
 </head>
 <body class="<?php echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout') . ($task ? ' task-' . $task : ' no-task') . ($itemid ? ' itemid-' . $itemid : '') . ($pageclass ? ' ' . $pageclass : '') . ($this->direction == 'rtl' ? ' rtl' : ''); ?>">
-    <header class="uk-background-white">
+    <header class="uk-background-white uk-position-relative">
         <nav class="uk-background-white uk-box-shadow-small">
             <div class="uk-container uk-container-large">
                 <div class="uk-grid-small" data-uk-grid>
@@ -104,7 +104,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
             <jdoc:include type="modules" name="menu" style="html5" />
         </div>
     </nav>
-    <?php if ($pageparams->get('show_page_heading', 1)) { ?>
+    <?php if ($pageparams->get('show_page_heading', 1) && $pageclass != 'home') { ?>
         <section class="uk-position-relative uk-background-primary uk-text-center uk-padding uk-padding-remove-horizontal pageHeader">
             <div class="uk-container uk-position-relative">
                 <h1 class="f900 uk-text-white font uk-h2"><?php echo $pageparams->get('page_heading'); ?></h1>
@@ -112,10 +112,22 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
         </section>
     <?php } ?>
     <jdoc:include type="message" />
+    <?php if ($pageclass == 'home') { ?>
+        <div class="uk-background-muted">
+            <div class="uk-container uk-container-large">
+                <div class="uk-padding uk-padding-remove-horizontal">
+                    <div data-uk-grid>
+                        <div class="uk-width-1-1 uk-width-expand@s"><jdoc:include type="modules" name="slideshow" style="html5" /></div>
+                        <div class="uk-width-1-1 uk-width-1-4@s"><jdoc:include type="modules" name="banners" style="html5" /></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
     <?php if ($this->countModules('topout', true)) : ?>
         <jdoc:include type="modules" name="topout" style="html5" />
     <?php endif; ?>
-    <main class="uk-padding uk-padding-remove-horizontal" data-uk-height-viewport="expand: true">
+    <main class="uk-padding<?php if ($pageclass == 'home') {echo '-large uk-padding-remove-bottom uk-background-primary uk-overflow-hidden';} ?> uk-padding-remove-horizontal <?php if ($pageclass == 'home') {echo 'uk-background-primary';} ?>" data-uk-height-viewport="expand: true">
         <div class="uk-container uk-container-large">
 	        <?php if ($this->countModules('topin', true)) : ?>
                 <jdoc:include type="modules" name="topin" style="html5" />
@@ -160,24 +172,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 		                    <?php endforeach; ?>
                         </ul>
                     </div>
-                    <div class="uk-width-expand uk-visible@s">
-                        <h6>دسترسی سریع</h6>
-                        <ul class="uk-list uk-list-collapse fNav">
-                            <li><a href="/about">درباره ما</a></li>
-                            <li><a href="#">آموزش</a></li>
-                            <li><a href="/policy">شرایط استفاده</a></li>
-                            <li><a href="/faq">پاسخ به پرسش‌های متداول</a></li>
-                        </ul>
-                    </div>
-                    <div class="uk-width-expand uk-visible@s">
-                        <h6>دسترسی سریع</h6>
-                        <ul class="uk-list uk-list-collapse fNav">
-                            <li><a href="/about">درباره ما</a></li>
-                            <li><a href="#">آموزش</a></li>
-                            <li><a href="/policy">شرایط استفاده</a></li>
-                            <li><a href="/faq">پاسخ به پرسش‌های متداول</a></li>
-                        </ul>
-                    </div>
+                    <jdoc:include type="modules" name="footer" style="html5" />
 	                <?php
 	                $phone = sprintf("%s - %s %s",
 		                substr($params->get('phone'), 0, 3),
@@ -232,7 +227,21 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
                                 </div>
                             </div>
                         </div>
-                        <div class="uk-width-1-1 uk-width-1-3@s uk-flex uk-flex-center support uk-visible@s">
+                        <div class="uk-width-1-1 uk-width-expand@s copyright uk-flex-last uk-flex-first@s">
+                            <div class="uk-height-1-1 uk-flex uk-flex-middle uk-flex-center uk-flex-right@s">
+                                <div>
+                                    <div class="uk-grid-small" data-uk-grid>
+                                        <div class="uk-width-expand uk-flex-uk-flex-middle">
+                                            <div class="uk-text-center uk-text-right@s">
+                                                <span class="uk-display-block uk-text-muted"><?php echo JText::_('DESIGNED_BY'); ?></span>
+                                                <a href="<?php echo JUri::base(); ?>" class="" title=""><i class="far fa-code uk-text-muted"></i><?php echo $netparsi; ?></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-1 uk-width-1-4@s uk-flex uk-flex-center support uk-visible@s">
                             <div class="uk-height-1-1 uk-flex uk-flex-middle">
                                 <div>
                                     <div class="uk-grid-small" data-uk-grid>

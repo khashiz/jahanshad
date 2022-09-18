@@ -61,14 +61,16 @@ class SplmsViewLesson extends HtmlView{
 
 		// check authorised or free course
 		if($this->item->lesson_type > 0 && !$this->isAuthorised && $this->courese->price > 0) {
-			$output  = '<div class="alert alert-warning">';
-			$output .= '<p>' . Text::_('COM_SPLMS_LESSON_NO_ACCESS') .'</p>';
-			$output .= '<a href="' . $this->courese->url . '">' . $this->courese->title .'</a>';
+			$output  = '<div class="uk-placeholder uk-border-rounded uk-margin-remove uk-text-center uk-padding-large">';
+			$output .= '<div class="uk-margin-bottom"><i class="far fa-3x fa-lock-keyhole uk-text-danger"></i></div>';
+			$output .= '<p class="font uk-text-secondary uk-margin-medium-bottom uk-margin-remove-top f700">' . Text::_('COM_SPLMS_LESSON_NO_ACCESS') .'</p>';
+			$output .= '<div><div class="uk-child-width-1-1 uk-child-width-1-4@s uk-flex-center" data-uk-grid><div><a href="#authModal" data-uk-toggle class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center"><i class="far fa-user-plus"></i><span>'.JText::_('LOGIN_REGISTER').'</span></a></div><div><a class="uk-button uk-button-default uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center" href="' . $this->courese->url . '"><i class="far fa-graduation-cap"></i><span>' . Jtext::_('COURSE_PAGE') .'</span></a></div></div></div>';
 			$output .= '</div>';
 
 			echo $output;
 			return;	
 		}
+
 		
 		if (isset($this->teacher) && $this->teacher) {
 			$this->teacher_description = strip_tags($this->teacher->description);

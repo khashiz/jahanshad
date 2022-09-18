@@ -26,10 +26,10 @@ jQuery(function ($) {
                 $this.find('.addToCartIcon').attr('class', 'far fa-spin fa-spinner');
             },
             success: function (data) {
-                UIkit.notification({ message: 'با موفقیت به سید رفت', status: 'success', pos: 'bottom-center' });
+                UIkit.notification({ message: 'دوره به سبد خرید اضافه شد.', status: 'success', pos: 'bottom-center' });
                 var newData = $.parseJSON(data);
-                $this.removeAttr('href').removeAttr('id').attr('href', newData.redirect);
-                $this.html('<i class="splms-icon-check"></i> ' + newData.button_text);
+                $this.removeAttr('href').removeAttr('id').attr('href', newData.redirect).removeClass('uk-button-primary').addClass('uk-button-success');
+                $this.html('<i class="far fa-check"></i><span>' + newData.button_text + '</span>');
             }
         });
     });
@@ -48,8 +48,9 @@ jQuery(function ($) {
             url: splms_url,
             data: request,
             success: function (data) {
+                UIkit.notification({ message: 'دوره از سبد خرید حذف شد.', status: 'danger', pos: 'bottom-center' });
                 var newData = $.parseJSON(data);
-                window.location = newData.redirect;
+                setTimeout(window.location = newData.redirect, 2000);
             }
         });
     });

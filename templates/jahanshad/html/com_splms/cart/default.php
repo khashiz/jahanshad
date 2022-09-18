@@ -22,7 +22,7 @@ use Joomla\CMS\Language\Text;
 } ?>
 
 <?php if (!empty($this->carts) && count((array)$this->carts) ) { ?>
-    <div data-uk-grid>
+    <div class="uk-grid-divider" data-uk-grid>
         <div class="uk-width-1-1 uk-width-expand@s">
             <table class="uk-table uk-table-divider uk-table-striped uk-table-middle uk-margin-remove uk-table-responsive">
 
@@ -65,37 +65,42 @@ use Joomla\CMS\Language\Text;
 
             </table>
         </div>
-        <div class="uk-width-1-1 uk-width-1-4@s">
+        <div class="uk-width-1-1 uk-width-1-3@s">
 	        <?php (empty($sale_price)) ? 0.0 : $total_sale_price = $total - $sale_price;?>
-            <tr>
-                <td class="text-right">
-                    <strong><?php echo Text::_('COM_SPLMS_CART_PRICE_TOTAL'); ?>: </strong>
-                </td>
-                <td width="200">
-			        <?php echo SplmsHelper::getPrice($total, $total_sale_price); ?>
-                </td>
-            </tr>
-            <div class="splms-cart">
-                <div class="splms-row">
-                    <div class="splms-col-sm-8 splms-payment-methods">
-
-                        <div class="splms-payment-methods-wrap">
+            <div class="uk-grid-small" data-uk-grid>
+                <div class="uk-text-tiny uk-text-muted font f700 uk-width-expand" data-uk-leader="fill: -"><?php echo JText::_('PRICE_TOTAL'); ?></div>
+                <div class="uk-text-small uk-text-secondary font f900 ss02"><?php echo SplmsHelper::getPrice($total); ?></div>
+            </div>
+            <?php if ($total_sale_price) { ?>
+            <div class="uk-grid-small" data-uk-grid>
+                <div class="uk-text-tiny uk-text-muted font f700 uk-width-expand" data-uk-leader="fill: -"><?php echo JText::_('PRICE_DISCOUNT'); ?></div>
+                <div class="uk-text-small uk-text-success font f900 ss02"><?php echo SplmsHelper::getPrice($total-$total_sale_price); ?></div>
+            </div>
+            <div class="uk-grid-small" data-uk-grid>
+                <div class="uk-text-tiny uk-text-muted font f700 uk-width-expand" data-uk-leader="fill: -"><?php echo JText::_('PRICE_FINAL'); ?></div>
+                <div class="uk-text-small uk-text-secondary font f900 ss02"><?php echo SplmsHelper::getPrice($total_sale_price); ?></div>
+            </div>
+            <?php } ?>
+            <div class="splms-cart uk-margin-medium-top">
+                <div>
+                    <div class="uk-hidden">
+                        <div>
 					        <?php $checked = true; ?>
 					        <?php if( $this->payment_method == 'all' || ( is_array($this->payment_method) && in_array('paypal', $this->payment_method) ) ) { ?>
-                                <div class="pull-left splms-slt-payment-method payment-method-paypal">
+                                <div class="splms-slt-payment-method payment-method-paypal">
                                     <label>
                                         <input type="radio" name="payment-method" value="paypal" <?php echo $checked ? 'checked="checked"' : ''; ?>>
-                                        <img style="display: inline-block; " class="splms-img-responsive splms-img-paypal" src="<?php echo Uri::base(true) . '/components/com_splms/assets/images/paypal-payment.png'; ?>">
+                                        <img src="<?php echo Uri::base(true) . '/components/com_splms/assets/images/paypal-payment.png'; ?>">
                                     </label>
                                 </div>
 						        <?php $checked = false; ?>
 					        <?php } ?>
 
 					        <?php if( $this->payment_method == 'all' || ( is_array($this->payment_method) && in_array('stripe', $this->payment_method) ) ) { ?>
-                                <div class="pull-left splms-slt-payment-method payment-method-stripe">
+                                <div class="splms-slt-payment-method payment-method-stripe">
                                     <label>
                                         <input type="radio" name="payment-method" value="stripe" <?php echo $checked ? 'checked="checked"' : ''; ?>>
-                                        <img style="display: inline-block; " class="splms-img-responsive splms-img-stripe" src="<?php echo Uri::base(true) . '/components/com_splms/assets/images/stripe-payment.png'; ?>">
+                                        <img class="splms-img-responsive splms-img-stripe" src="<?php echo Uri::base(true) . '/components/com_splms/assets/images/stripe-payment.png'; ?>">
                                     </label>
                                 </div>
 						        <?php $checked = false; ?>
@@ -105,7 +110,7 @@ use Joomla\CMS\Language\Text;
                                 <div class="pull-left splms-slt-payment-method payment-method-razorpay">
                                     <label>
                                         <input type="radio" name="payment-method" value="razorpay" <?php echo $checked ? 'checked="checked"' : ''; ?>>
-                                        <img style="display: inline-block; " class="splms-img-responsive splms-img-razorpay" src="<?php echo Uri::base(true) . '/components/com_splms/assets/images/razorpay-payment.png'; ?>">
+                                        <img class="splms-img-responsive splms-img-razorpay" src="<?php echo Uri::base(true) . '/components/com_splms/assets/images/razorpay-payment.png'; ?>">
                                     </label>
                                 </div>
 						        <?php $checked = false; ?>
@@ -115,7 +120,7 @@ use Joomla\CMS\Language\Text;
                                 <div class="pull-left splms-slt-payment-method payment-method-direct">
                                     <label>
                                         <input type="radio" name="payment-method" value="direct" <?php echo $checked ? 'checked="checked"' : ''; ?>>
-                                        <img style="display: inline-block; " class="splms-img-responsive splms-img-direct" src="<?php echo Uri::base(true) . '/components/com_splms/assets/images/direct-payment.png'; ?>">
+                                        <img class="splms-img-responsive splms-img-direct" src="<?php echo Uri::base(true) . '/components/com_splms/assets/images/direct-payment.png'; ?>">
                                         </input>
                                     </label>
                                 </div>
@@ -135,13 +140,16 @@ use Joomla\CMS\Language\Text;
                         </div> <!-- ./splms-payment-methods-wrap -->
                     </div>
 
-                    <div class="splms-col-sm-4 clearfix splms-payment-submit">
+                    <div class="splms-payment-submit">
 				        <?php
 				        if($this->user->guest) {
 					        $link =  base64_encode(Route::_(Uri::root() . 'index.php?option=com_splms&view=cart' . SplmsHelper::getItemid('cart'), false));
 					        $login_link = Route::_(Uri::root() . 'index.php?option=com_users&view=login'. SplmsHelper::getItemid('login') .'&return=' . $link, false);
 					        ?>
-                            <a href="<?php echo $login_link; ?>" class="btn btn-primary pull-right"><?php echo Text::_('COM_SPLMS_CART_LOGIN_TO_CHECKOUT'); ?></a>
+                            <a href="#authModal" data-uk-toggle class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center">
+                                <i class="far fa-user-plus"></i>
+                                <span><?php echo Text::_('COM_SPLMS_CART_LOGIN_TO_CHECKOUT'); ?></span>
+                            </a>
 					        <?php
 				        } else {
 
@@ -152,7 +160,7 @@ use Joomla\CMS\Language\Text;
 						        } else {
 							        $action = 'https://www.paypal.com/cgi-bin/webscr';
 						        } ?>
-                                <form action="<?php echo $action; ?>" method="post" class="pull-right splms-paypal-form splms-payment-method payment-method-paypal">
+                                <form action="<?php echo $action; ?>" method="post" class="splms-paypal-form splms-payment-method payment-method-paypal">
                                     <input type="hidden" name="cmd" value="_cart">
                                     <input type="hidden" name="upload" value="1">
                                     <input type="hidden" name="business" value="<?php echo $this->params->get('paypal_id'); ?>">
@@ -178,7 +186,10 @@ use Joomla\CMS\Language\Text;
                                     <input type="hidden" name="notify_url" value="<?php echo $this->notify_url; ?>"/>
                                     <input type="hidden" name="return" value="<?php echo $this->return_success; ?>"/>
                                     <input type="hidden" name="cancel_return" value="<?php echo $this->return_cencel; ?>"/>
-                                    <button type="submit" class="btn btn-success" name="submit"><?php echo Text::_('COM_SPLMS_CART_PROCEED_CHECKOUT'); ?></button>
+                                    <button type="submit" class="uk-button uk-button-success uk-button-large uk-border-rounded uk-box-shadow-small uk-width-1-1 uk-flex-center" name="submit">
+                                        <i class="far fa-wallet"></i>
+                                        <span><?php echo Text::_('COM_SPLMS_CART_PROCEED_CHECKOUT'); ?></span>
+                                    </button>
                                 </form>
 					        <?php } ?>
 
@@ -210,7 +221,7 @@ use Joomla\CMS\Language\Text;
 				        } ?>
                     </div>
                 </div>
-                <div class="splms-payment-methods-text-wrap">
+                <div hidden>
 			        <?php if ($this->bank_info) { ?>
                         <div class="splms-payment-method-bank splms-row">
                             <div class="splms-payment-method-bank-info splms-col-sm-6">

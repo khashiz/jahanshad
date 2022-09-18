@@ -29,7 +29,6 @@ $thumb_size = strtolower($splmsparams->get('course_thumbnail_small', '100X60'));
 $cart_url = Route::_('index.php?option=com_splms&view=cart'. splmshelper::getItemid('cart'));
 
 ?>
-
 <div class="uk-width-auto uk-flex uk-flex-middle <?php echo $moduleclass_sfx; ?>">
 	<?php if(count($items)) { ?>
         <span class="uk-button uk-button-default uk-button-large uk-border-rounded uk-button-icon uk-box-shadow-small"><i class="fas fa-shopping-bag"></i></span>
@@ -44,9 +43,10 @@ $cart_url = Route::_('index.php?option=com_splms&view=cart'. splmshelper::getIte
 			                    <?php $cart_price = ($item->sale_price > 0) ? $item->sale_price : $item->price; ?>
                                 <div>
                                     <div class="uk-grid-small" data-uk-grid>
-                                        <div class="uk-width-1-4">
-                                            <a href="<?php echo $item->url; ?>" class="uk-display-inline-block uk-border-rounded uk-box-shadow-small uk-overflow-hidden">
-                                                <img src="<?php echo !empty($item->image) ? $item->thumbnail : 'images/placeholder-s.svg'; ?>" alt="<?php echo $item->title; ?>" data-uk-svg>
+                                        <div class="uk-width-1-3">
+                                            <a href="<?php echo $item->url; ?>" class="uk-display-block uk-border-rounded uk-box-shadow-small uk-overflow-hidden uk-cover-container">
+                                                <canvas width="100" height="100"></canvas>
+                                                <img src="<?php echo !empty($item->image) ? $item->thumbnail : 'images/placeholder.svg'; ?>" alt="<?php echo $item->title; ?>" data-uk-cover>
                                             </a>
                                         </div>
                                         <div class="uk-width-expand uk-flex uk-flex-middle">

@@ -69,11 +69,16 @@ nav{
     list-style: none;
     > li{
       margin-right: 20px;
+      height: 100%;
       > a{
         font-variation-settings: 'wght' 600;
         font-size: 14px;
         color: $gray700;
         text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
         @extend %font;
         &:hover{
           color: $primary;
@@ -82,6 +87,46 @@ nav{
       &.active{
         > a{
           color: $primary;
+        }
+      }
+    }
+  }
+  .subMenuWrapper {
+    width: 250px;
+    border-top: 2px solid $accent;
+    @include border-radius(0 0 5px 5px);
+    > ul {
+      list-style: none;
+      margin: 0;
+      > li {
+        > a {
+          font-size: 14px;
+          display: block;
+          padding: 10px 15px;
+          text-decoration: none;
+          color: $gray900;
+          @extend .font;
+          @extend .f700;
+          @include border-radius(5px);
+          @include transition(all .3s ease-in-out);
+
+          &[aria-expanded="true"],
+          &:hover {
+            background-color: $primary;
+            color: #fff;
+          }
+
+          + div {
+            &[data-uk-drop] {
+              > div {
+                @include border-radius(5px);
+              }
+            }
+          }
+        }
+
+        &:not(:first-child) {
+          margin-top: 1px;
         }
       }
     }
@@ -272,6 +317,19 @@ section{
 .authLoader{
   background-color: rgba(255, 255, 255, .9);
 }
+.activeCourse{
+  position: relative;
+  overflow: hidden;
+  &:after{
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background-color: $accent;
+  }
+}
 footer{
   background-color: $secondary;
   .supportIcon{
@@ -386,11 +444,53 @@ footer{
           }
         }
       }
+      .uk-grid-divider.uk-grid-stack>.uk-grid-margin::before,
       .uk-grid-divider>:not(.uk-first-column)::before{border-color: #373a3e;}
     }
   }
+  @media(max-width: 639px){
+    .menu{
+      display: none;
+    }
+  }
 }
-
+.sliderArrow{
+  width: 40px;
+  height: 40px;
+  background-color: $accent;
+  color: #fff;
+}
+.uk-dotnav{
+  li{
+    span{
+      cursor: pointer;
+      border-color: #fff;
+      &:hover{
+        background-color: rgba(255, 255, 255, .6);
+      }
+    }
+    &.uk-active{
+      span{
+        background-color: #fff;
+      }
+    }
+  }
+  &.dark{
+    li{
+      span{
+        border-color: $gray400;
+        &:hover{
+          background-color: $gray400;
+        }
+      }
+      &.uk-active{
+        span{
+          background-color: $gray400;
+        }
+      }
+    }
+  }
+}
 .uk-accordion{
   li{
     overflow: hidden;
@@ -437,6 +537,7 @@ fieldset{
 .uk-background-white{background-color: #fff;}
 .uk-text-white{color: #fff;}
 .uk-text-success{color: $success600 !important;}
+.uk-text-danger{color: $danger600 !important;}
 .uk-text-tiny{font-size: 12px;}
 .uk-text-zero{font-size: 0;}
 

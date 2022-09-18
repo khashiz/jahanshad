@@ -185,7 +185,7 @@ $user = Factory::getUser();
                                         <div class="uk-margin-bottom"><i class="far fa-3x fa-comment-alt-dots uk-text-muted"></i></div>
                                         <p class="font uk-text-secondary uk-margin-medium-bottom uk-margin-remove-top f700"><?php echo JText::_('COM_SPLMS_LOGIN_TO_REVIEW'); ?></p>
                                         <div class="uk-width-1-1 uk-width-1-2@s uk-margin-auto">
-                                            <a class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center" href="<?php echo Route::_('index.php?option=com_users&view=login&return=' . base64_encode('index.php?option=com_splms&view=course&id=' . $this->item->id . ':' . $this->item->alias . SplmsHelper::getItemid('courses'))); ?>"><i class="far fa-sign-in"></i><span><?php echo JText::_('JLOGIN'); ?></span></a>
+                                            <a class="uk-button uk-button-primary uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center" href="#authModal" data-uk-toggle><i class="far fa-sign-in fa-flip-horizontal"></i><span><?php echo JText::_('JLOGIN'); ?></span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -262,7 +262,7 @@ $user = Factory::getUser();
                                 <span><?php echo Text::_('COM_SPLMS_BUY_NOW'); ?></span>
                             </a>
 		                <?php } elseif ($this->isAuthorised != '') { ?>
-                            <a href="<?php echo JUri::base().'my-courses'; ?>" class="uk-button uk-button-success uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center uk-width-1-1">
+                            <a href="#lessons<?php // echo JUri::base().'my-courses'; ?>" data-uk-scroll class="uk-button uk-button-success uk-button-large uk-border-rounded uk-box-shadow-small uk-flex-center uk-width-1-1">
                                 <i class="fas fa-check-circle"></i>
 				                <span><?php echo Text::_('COM_SPLMS_PURCHASED'); ?></span>
                             </a>
@@ -307,13 +307,16 @@ $user = Factory::getUser();
                         <div class="courseListItem">
                             <div class="uk-box-shadow-small uk-border-rounded uk-overflow-hidden uk-height-1-1 uk-flex uk-flex-column">
                                 <div class="uk-position-relative">
-                                    <div class="uk-position-small uk-position-top-left badges">
+                                    <div class="uk-position-small uk-position-top-left badges uk-position-z-index">
 								        <?php if ($related_course->price == 0) { echo '<span class="uk-badge uk-badge-success uk-box-shadow-small">' . Text::_('COM_SPLMS_FREE') . '</span>'; } ?>
                                     </div>
-                                    <div class="uk-position-small uk-position-bottom-right badges uk-text-small">
+                                    <div class="uk-position-small uk-position-bottom-right badges uk-text-small uk-position-z-index">
 								        <?php echo $related_course->course_time; ?>
                                     </div>
-                                    <img src="<?php echo !empty($related_course->image) ? $related_course->thumb : 'images/placeholder-med.svg'; ?>" class="" alt="<?php echo $related_course->title; ?>">
+                                    <a href="<?php echo $related_course->url; ?>" class="uk-display-block uk-cover-container">
+                                        <canvas width="400" height="300"></canvas>
+                                        <img src="<?php echo !empty($related_course->image) ? $related_course->thumb : 'images/placeholder-med.svg'; ?>" class="" alt="<?php echo $related_course->title; ?>" data-uk-cover>
+                                    </a>
                                 </div>
                                 <div class="uk-padding-small uk-flex-1">
                                     <div class="uk-flex uk-flex-column uk-flex-between uk-height-1-1">
